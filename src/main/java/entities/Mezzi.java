@@ -1,7 +1,9 @@
 package entities;
 
 import jakarta.persistence.*;
+import entities.sottoclassi.Biglietti;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,12 +19,14 @@ public class Mezzi {
 
     private int capienza;
     private boolean in_manutenzione;
-    private List<Biglietti> biglietti;
+    @OneToMany (mappedBy = "mezzo")
+    private List<Biglietti> biglietti = new ArrayList<>();
 
     @OneToMany (mappedBy = "mezzo")
-    private List<Tratte> lista_tratte;
+    private List<Tratte> lista_tratte = new ArrayList<>();
 
-    private List<Manutenzioni> lista_manutenzioni;
+    @OneToMany (mappedBy = "mezzo")
+    private List<Manutenzioni> lista_manutenzioni = new ArrayList<>();
 
     public Mezzi() {
     }

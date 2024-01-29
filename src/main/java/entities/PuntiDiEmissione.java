@@ -2,6 +2,8 @@ package entities;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class PuntiDiEmissione {
@@ -13,12 +15,13 @@ public class PuntiDiEmissione {
 
     private String citta;
     @Column(name = "tickets_emessi")
-    private int tickets_emessi;
+    @OneToMany(mappedBy = "puntiDiEmissione")
+    private Set<Tickets> tickets_emessi;
 
     public PuntiDiEmissione() {
     }
 
-    public PuntiDiEmissione(int id, String nome, String citta, int tickets_emessi) {
+    public PuntiDiEmissione(int id, String nome, String citta, Set<Tickets> tickets_emessi) {
         this.id = id;
         this.nome = nome;
         this.citta = citta;
@@ -49,11 +52,11 @@ public class PuntiDiEmissione {
         this.citta = citta;
     }
 
-    public int getTickets_emessi() {
+    public Set<Tickets> getTickets_emessi() {
         return tickets_emessi;
     }
 
-    public void setTickets_emessi(int tickets_emessi) {
+    public void setTickets_emessi(Set<Tickets> tickets_emessi) {
         this.tickets_emessi = tickets_emessi;
     }
 

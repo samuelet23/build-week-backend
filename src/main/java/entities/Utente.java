@@ -1,70 +1,84 @@
 package entities;
 
+import jakarta.persistence.*;
+
 import java.util.Date;
 
+@Entity
+@Table
 public class Utente {
+    @Id
+    @GeneratedValue(strategy =GenerationType.SEQUENCE, generator = "id_tessera")
+    @SequenceGenerator(name = "id_tessera", initialValue = 1, allocationSize = 1)
+    private int id;
 
     private String nome;
     private String cognome;
-
+    @Column(name = "data_nascita")
     private Date dataNascita;
 
-    private int Id;
+    @Column(name = "numero_tessera")
+    @OneToOne(mappedBy = "utente")
+    private Tessera numeroTessera;
 
-    private String tessera;
+    public Utente(){}
 
-    public Utente(String nome, String cognome, Date dataNascita, int Id, String tessera) {
+    public Utente(int id, String nome, String cognome, Date dataNascita, Tessera numeroTessera) {
+        this.id = id;
         this.nome = nome;
         this.cognome = cognome;
         this.dataNascita = dataNascita;
-        this.Id = Id;
-        this.tessera = tessera;
+        this.numeroTessera = numeroTessera;
+    }
+
+    @Override
+    public String toString() {
+        return "Utente{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", cognome='" + cognome + '\'' +
+                ", dataNascita=" + dataNascita +
+                ", numeroTessera=" + numeroTessera +
+                '}';
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public String getCognome() {
-        return cognome;
-    }
-
-    public Date getDataNascita() {
-        return dataNascita;
-    }
-
-    public int getId() {
-        return Id;
-    }
-
-    public String getTessera() {
-        return tessera;
-    }
-
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getCognome() {
+        return cognome;
     }
 
     public void setCognome(String cognome) {
         this.cognome = cognome;
     }
 
+    public Date getDataNascita() {
+        return dataNascita;
+    }
+
     public void setDataNascita(Date dataNascita) {
         this.dataNascita = dataNascita;
     }
 
-    public void setId(int Id) {
-        this.Id = Id;
+    public Tessera getNumeroTessera() {
+        return numeroTessera;
     }
 
-    public void setTessera(String tessera) {
-        this.tessera = tessera;
+    public void setNumeroTessera(Tessera numeroTessera) {
+        this.numeroTessera = numeroTessera;
     }
-
-    @Override
-    public String toString() {
-        return "Utente{" + "nome=" + nome + ", cognome=" + cognome + ", dataNascita=" + dataNascita + ", Id=" + Id + ", tessera=" + tessera + '}';
-    }
-
-
 }

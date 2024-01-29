@@ -1,6 +1,6 @@
 package entities.type;
 
-public enum Periodicità {
+public enum Periodicita {
 
     SETTIMANALE,
     MENSILE

@@ -1,6 +1,6 @@
 package entities;
 
-import jakarta.persistence.Entity;
+import javax.persistence.Entity;
 
 @Entity
 public class DistributoriAutomatici extends PuntiDiEmissione{

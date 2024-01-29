@@ -1,5 +1,6 @@
 package entities.sottoclassi;
 
+import entities.PuntiDiEmissione;
 import entities.PuntiEmissione;
 import entities.Tickets;
 import jakarta.persistence.*;
@@ -23,7 +24,7 @@ public class Biglietti extends Tickets {
         this.dataVidimazione = dataVidimazione;
     }
 
-    public Biglietti(PuntiEmissione puntiDiEmissione, LocalDate dataEmissione, boolean valido, int prezzo, int id, LocalDate dataVidimazione) {
+    public Biglietti(PuntiDiEmissione puntiDiEmissione, LocalDate dataEmissione, boolean valido, int prezzo, int id, LocalDate dataVidimazione) {
         super(puntiDiEmissione, dataEmissione, valido, prezzo);
         this.id = id;
         this.dataVidimazione = dataVidimazione;

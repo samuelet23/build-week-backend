@@ -2,6 +2,8 @@ package entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table (name = "mezzi")
 public class Mezzi {
@@ -17,6 +19,7 @@ public class Mezzi {
     private boolean in_manutenzione;
     private List<Biglietti> biglietti;
 
+    @OneToMany (mappedBy = "mezzo")
     private List<Tratte> lista_tratte;
 
     private List<Manutenzioni> lista_manutenzioni;

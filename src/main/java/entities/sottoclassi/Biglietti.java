@@ -1,7 +1,6 @@
 package entities.sottoclassi;
 
 import entities.PuntiDiEmissione;
-import entities.PuntiEmissione;
 import entities.Tickets;
 import jakarta.persistence.*;
 

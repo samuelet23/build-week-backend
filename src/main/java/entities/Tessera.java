@@ -101,32 +101,3 @@ public class Tessera {
             System.out.println("Abbonamento: " + this.abbonamento);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> Daniele

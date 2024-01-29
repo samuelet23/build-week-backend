@@ -99,34 +99,5 @@ public class Tessera {
             System.out.println("Data acquisto: " + this.dataAcquisto);
             System.out.println("Data scadenza: " + this.dataScadenza);
             System.out.println("Abbonamento: " + this.abbonamento);
-
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

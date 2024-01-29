@@ -7,7 +7,7 @@ import java.time.LocalDate;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Tickets {
     @Column(name = "punti_di_emissione")
-    protected PuntiEmissione puntiDiEmissione;
+    protected PuntiDiEmissione puntiDiEmissione;
     @Column(name = "data_emissione")
     protected LocalDate dataEmissione;
 
@@ -15,18 +15,18 @@ public abstract class Tickets {
     protected int prezzo;
 
     public Tickets(){}
-    public Tickets(PuntiEmissione puntiDiEmissione, LocalDate dataEmissione, boolean valido, int prezzo) {
+    public Tickets(PuntiDiEmissione puntiDiEmissione, LocalDate dataEmissione, boolean valido, int prezzo) {
         this.puntiDiEmissione = puntiDiEmissione;
         this.dataEmissione = dataEmissione;
         this.valido = valido;
         this.prezzo = prezzo;
     }
 
-    public PuntiEmissione getPuntiDiEmissione() {
+    public PuntiDiEmissione getPuntiDiEmissione() {
         return puntiDiEmissione;
     }
 
-    public void setPuntiDiEmissione(PuntiEmissione puntiDiEmissione) {
+    public void setPuntiDiEmissione(PuntiDiEmissione puntiDiEmissione) {
         this.puntiDiEmissione = puntiDiEmissione;
     }
 

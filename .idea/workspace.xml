@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="647afd16-3174-4bdc-977b-660c6f6ce546" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/entities/Tratte.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Manutenzioni.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Manutenzioni.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Mezzi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Mezzi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/sottoclassi/Biglietti.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/sottoclassi/Biglietti.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +23,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="Davide" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -46,12 +43,17 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Davide",
+    "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/brucaliffo/github/build-week-backend",
+    "last_opened_file_path": "/home/brucaliffo/github/build-week-backend/src/main/resources",
     "onboarding.tips.debug.path": "C:/Users/Samuele Toscano/IdeaProjects/build-week-backend/src/main/java/fs0523-Samuele-Toscano-backend/Main.java"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

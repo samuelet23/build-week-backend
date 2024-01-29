@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="647afd16-3174-4bdc-977b-660c6f6ce546" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/RivenditoriAutorizzati.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/RivenditoriAutorizzati.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/ManutenzioniDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/MezziDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/PuntiDiEmissioneDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/PuntiDiEmissioneDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +46,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Davide",
+    "git-widget-placeholder": "davide-test",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/home/brucaliffo/github/build-week-backend/src/main/resources",
     "onboarding.tips.debug.path": "C:/Users/Samuele Toscano/IdeaProjects/build-week-backend/src/main/java/fs0523-Samuele-Toscano-backend/Main.java"

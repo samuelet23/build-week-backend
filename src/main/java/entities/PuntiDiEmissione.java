@@ -1,6 +1,7 @@
 package entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -12,13 +13,14 @@ public class PuntiDiEmissione {
     private String nome;
 
     private String citta;
+    @OneToMany(mappedBy = "PuntiDiEmissione")
     @Column(name = "tickets_emessi")
-    private int tickets_emessi;
+    private List<Tickets> tickets_emessi;
 
     public PuntiDiEmissione() {
     }
 
-    public PuntiDiEmissione(int id, String nome, String citta, int tickets_emessi) {
+    public PuntiDiEmissione(int id, String nome, String citta, List<Tickets> tickets_emessi) {
         this.id = id;
         this.nome = nome;
         this.citta = citta;
@@ -49,11 +51,11 @@ public class PuntiDiEmissione {
         this.citta = citta;
     }
 
-    public int getTickets_emessi() {
+    public List<Tickets> getTickets_emessi() {
         return tickets_emessi;
     }
 
-    public void setTickets_emessi(int tickets_emessi) {
+    public void setTickets_emessi(List<Tickets> tickets_emessi) {
         this.tickets_emessi = tickets_emessi;
     }
 

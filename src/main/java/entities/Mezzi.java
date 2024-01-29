@@ -1,5 +1,6 @@
 package entities;
 
+import entities.type.TipoMezzo;
 import jakarta.persistence.*;
 import entities.sottoclassi.Biglietti;
 

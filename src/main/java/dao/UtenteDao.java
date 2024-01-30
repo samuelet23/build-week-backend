@@ -1,5 +1,6 @@
 package dao;
 
+import entities.Manutenzioni;
 import entities.Tickets;
 import entities.Utente;
 import jakarta.persistence.EntityManager;
@@ -8,45 +9,32 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 
 public class UtenteDao {
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("trasporto_pubblico");
-    EntityManager em = emf.createEntityManager();
-    EntityTransaction et = em.getTransaction();
+    private EntityManagerFactory emf;
+    private EntityManager em;
 
-    public void save(Utente utente){
-        try {
-            et.begin();
-            em.persist(utente);
-            et.commit();
-        }catch (Exception e){
-            e.getMessage();
-        }finally{
-            em.close();
-        }
+    public UtenteDao() {
+        emf = Persistence.createEntityManagerFactory("trasporto_pubblico");
+        em = emf.createEntityManager();
     }
 
-    public Utente getById(int id ){
-        Utente utente = null;
-        try{
-            et.begin();
-            utente = em.find(Utente.class, id);
-            et.commit();
-        }catch (Exception e){
-            e.getMessage();
-        }finally{
-            em.close();
-        }
-        return utente;
-    }
-    public void delete(int id){
-        try{
-            et.begin();
-            Utente u =getById(id);
-            em.remove(u);
-        }catch (Exception e){
-            e.getMessage();
-        }finally {
-            em.close();
-        }
+    public void aggiungi (Utente u){
+        EntityTransaction et = em.getTransaction();
+        et.begin();
+        em.persist(u);
+        et.commit();
+        em.refresh(u);
     }
 
+    public void elimina(int id){
+        EntityTransaction et = em.getTransaction();
+        et.begin();
+        Utente u = getById(id);
+        em.remove(u);
+        et.commit();
+    }
+
+    public Utente getById(int id){
+        return em.find(Utente.class, id);
+    }
 }
+

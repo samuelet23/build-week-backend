@@ -11,10 +11,7 @@ import java.time.LocalDate;
 @Table(name = "abbonamenti")
 public class Abbonamenti extends Tickets {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_abbonamenti")
-    @SequenceGenerator(name = "id_abbonamenti", initialValue = 1, allocationSize = 1)
-    private int id;
+
 
     @ManyToOne
     @JoinColumn(name = "tessera_fk")
@@ -22,16 +19,17 @@ public class Abbonamenti extends Tickets {
     private Periodicita periodicita;
     private LocalDate scadenza;
 
-    public Abbonamenti(int id, Tessera tessera, Periodicita periodicita, LocalDate scadenza) {
-        this.id = id;
+
+    public Abbonamenti(){}
+
+    public Abbonamenti(Tessera tessera, Periodicita periodicita, LocalDate scadenza) {
         this.tessera = tessera;
         this.periodicita = periodicita;
         this.scadenza = scadenza;
     }
 
-    public Abbonamenti(PuntiDiEmissione puntiDiEmissione, LocalDate dataEmissione, boolean valido, int prezzo, int id, Tessera tessera, Periodicita periodicita, LocalDate scadenza) {
-        super(puntiDiEmissione, dataEmissione, valido, prezzo);
-        this.id = id;
+    public Abbonamenti(int id, PuntiDiEmissione puntiDiEmissione, LocalDate dataEmissione, boolean valido, int prezzo, Tessera tessera, Periodicita periodicita, LocalDate scadenza) {
+        super(id, puntiDiEmissione, dataEmissione, valido, prezzo);
         this.tessera = tessera;
         this.periodicita = periodicita;
         this.scadenza = scadenza;
@@ -40,7 +38,7 @@ public class Abbonamenti extends Tickets {
     @Override
     public String toString() {
         return "Abbonamenti{" +
-                "id=" + id +
+                "tessera=" + tessera +
                 ", periodicita=" + periodicita +
                 ", scadenza=" + scadenza +
                 ", puntiDiEmissione=" + puntiDiEmissione +
@@ -48,14 +46,6 @@ public class Abbonamenti extends Tickets {
                 ", valido=" + valido +
                 ", prezzo=" + prezzo +
                 '}';
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public Tessera getTessera() {
@@ -81,6 +71,4 @@ public class Abbonamenti extends Tickets {
     public void setScadenza(LocalDate scadenza) {
         this.scadenza = scadenza;
     }
-
-    public Abbonamenti(){}
 }

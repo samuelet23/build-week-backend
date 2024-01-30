@@ -9,29 +9,36 @@ import entities.type.Periodicita;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 
 public class Main {
     private static final Logger errorLogger = LoggerFactory.getLogger("main_error");
     private static final Logger infoLogger = LoggerFactory.getLogger("main_info");
+    private static final ManutenzioniDAO manutenzioniDAO = new ManutenzioniDAO();
+    private static final TratteDAO tratteDAO = new TratteDAO();
+    private static final PuntiDiEmissioneDAO puntiDiEmissioneDAO = new PuntiDiEmissioneDAO();
+    private static final MezziDAO mezziDAO = new MezziDAO();
+    private static final TesseraDao tesseraDao = new TesseraDao();
+    private static final TicketsDao ticketsDao = new TicketsDao();
+    private static final UtenteDao utenteDao = new UtenteDao();
     public static void main(String[] args) {
-        TicketsDao ticketsDao = new TicketsDao();
-        TratteDAO tratteDAO = new TratteDAO();
-        MezziDAO mezziDAO = new MezziDAO();
-        ManutenzioniDAO manutenzioniDAO = new ManutenzioniDAO();
-        PuntiDiEmissioneDAO puntiDiEmissioneDAO = new PuntiDiEmissioneDAO();
-        TesseraDao tesseraDao = new TesseraDao();
-        UtenteDao utenteDao = new UtenteDao();
+
+
+        Mezzi m1 = new Mezzi();
+        m1.setTipo(TipoMezzo.TRAM);
+        m1.setIn_manutenzione(false);
+        saveMezzo(m1);
 
 
 
-        DistributoriAutomatici d = new DistributoriAutomatici();
-        d.setIn_servizio(true);
+        PuntiDiEmissione d = new DistributoriAutomatici();
+        ((DistributoriAutomatici)d).setIn_servizio(true);
         d.setCitta("Milano");
         d.setNome("BuyHere");
-
-        puntiDiEmissioneDAO.aggiungi(d);
+        savePunto(d);
 
         Utente utente = new Utente();
         utente.setNome("Mario");
@@ -44,6 +51,7 @@ public class Main {
         tessera.setDataAcquisto(LocalDate.of(2024,Month.FEBRUARY, 12));
         tessera.setDataScadenza(LocalDate.of(2025,Month.FEBRUARY, 12));
         tessera.setUtente(utente);
+
 
         Biglietti b = new Biglietti();
         Abbonamenti a = new Abbonamenti();
@@ -59,27 +67,21 @@ public class Main {
         a.setPeriodicita(Periodicita.MENSILE);
         a.setValido(true);
         LocalDate scadenzaMensile = LocalDate.now().plusMonths(1);
+        a.setDataEmissione(LocalDate.now());
         a.setScadenza(scadenzaMensile);
         a.setPuntiDiEmissione(d);
         tessera.setAbbonamenti(Set.of(a));
 
-        tesseraDao.aggiungi(tessera);
+        saveTessera(tessera);
+
         a.setTessera(tessera);
 
 
         ticketsDao.aggiungi(a);
 
-        Mezzi m1 = new Mezzi();
-        m1.setTipo(TipoMezzo.TRAM);
-        m1.setIn_manutenzione(false);
-        try {
-            mezziDAO.aggiungi(m1);
-            infoLogger.info("Aggiunta del mezzo riuscita con successo!");
-        } catch (Exception e){
-            e.getMessage();
-            errorLogger.error("Aggiunta di mezzo non riuscita");
-        }
 
+
+        vidimaBiglietto(m1,b);
 
         Tratte tratta1 = new Tratte();
         tratta1.setData(LocalDate.now());
@@ -87,31 +89,86 @@ public class Main {
         tratta1.setZona_partenza("Pescara");
         tratta1.setCapolinea("Vasto");
         tratta1.setTempo_medio(Time.valueOf("03:03:05"));
-        tratta1.setMezzo(m1);
-
-        try {
-            tratteDAO.aggiungi(tratta1);
-            infoLogger.info("Aggiunta tratta riuscita con successo!");
-        } catch (Exception e){
-            e.getMessage();
-            errorLogger.error("Aggiunta della tratta non riuscita");
-        }
-
+        saveTratta(tratta1,m1);
 
         Manutenzioni man1 = new Manutenzioni();
         man1.setData_inizio(LocalDate.now());
         man1.setData_fine(man1.getData_inizio().plusWeeks(2));
-        man1.setMezzo(m1);
-        manutenzioniDAO.setInManutenzione(m1);
 
-        try {
-            manutenzioniDAO.aggiungi(man1);
-            infoLogger.info("Aggiunta manutenzione riuscita con successo!");
-        } catch (Exception e){
-            e.getMessage();
-            errorLogger.error("Aggiunta della manutenzione non riuscita");
-        }
 
+        saveManutenzioni(man1, m1);
 
     }
+
+    public static void saveManutenzioni(Manutenzioni man, Mezzi m){
+            man.setMezzo(m);
+            manutenzioniDAO.setInManutenzione(m);
+            try {
+                manutenzioniDAO.aggiungi(man);
+                infoLogger.info("Aggiunta manutenzione riuscita con successo!");
+            } catch (Exception e){
+                e.getMessage();
+                errorLogger.error("Aggiunta della manutenzione non riuscita");
+            }
+    }
+
+    public static void saveTratta(Tratte tratta, Mezzi m){
+       tratta.setMezzo(m);
+       try {
+           tratteDAO.aggiungi(tratta);
+           infoLogger.info("Aggiunta tratta riuscita con successo!");
+       } catch (Exception e){
+        e.getMessage();
+        errorLogger.error("Aggiunta della tratta non riuscita");
+       }
+    }
+    public static void savePunto (PuntiDiEmissione punto){
+        try {
+            puntiDiEmissioneDAO.aggiungi(punto);
+            infoLogger.info("Punto di emissione" + punto + "aggiunto");
+        } catch (Exception e){
+            errorLogger.error("Punto di emissione" + punto + " non aggiunto : ERRORE");
+        }
+    }
+    public static void saveMezzo (Mezzi m){
+        try {
+            mezziDAO.aggiungi(m);
+            infoLogger.info("Aggiunta del mezzo riuscita con successo!");
+        } catch (Exception e){
+            e.getMessage();
+            errorLogger.error("Aggiunta di mezzo non riuscita");
+        }
+    }
+
+    public static void saveTessera (Tessera tessera){
+        try {
+        tesseraDao.aggiungi(tessera);
+        infoLogger.info("Tessera aggiunta");
+        } catch (Exception e){
+        errorLogger.error("Tessera non aggiunta: ERRORE");
+        }
+    }
+
+    public static void vidimaBiglietto (Mezzi mezzo, Biglietti biglietto){
+        biglietto.setValido(false);
+        biglietto.setDataVidimazione(LocalDate.now());
+        biglietto.setMezzo(mezzo);
+        List <Biglietti> lista = mezzo.getBiglietti();
+        lista.add(biglietto);
+        mezzo.setBiglietti(lista);
+        try {
+            ticketsDao.aggiungi(biglietto);
+            infoLogger.info("Biglietto aggiornato!");
+        } catch (Exception e){
+            errorLogger.error("Biglietto non aggiornato: ERRORE");
+        }
+        try {
+            mezziDAO.aggiungi(mezzo);
+            infoLogger.info("Mezzo aggiornato!");
+        } catch (Exception e){
+            errorLogger.error("Mezzo non aggiornato: ERRORE");
+        }
+    }
 }
+
+

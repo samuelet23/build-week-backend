@@ -9,7 +9,8 @@ import java.util.Set;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class PuntiDiEmissione {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "id_punti_emissione")
+    @SequenceGenerator(name = "id_punti_emissione", initialValue = 1, allocationSize = 1)
     private int id;
 
     private String nome;

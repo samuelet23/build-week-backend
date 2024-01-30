@@ -2,10 +2,7 @@ package dao;
 
 import entities.Mezzi;
 import entities.Tessera;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.Persistence;
+import jakarta.persistence.*;
 
 public class MezziDAO {
     private EntityManagerFactory emf;

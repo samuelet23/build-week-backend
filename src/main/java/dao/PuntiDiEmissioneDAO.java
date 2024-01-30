@@ -15,25 +15,16 @@ public class PuntiDiEmissioneDAO {
     public void aggiungi(PuntiDiEmissione c){
         EntityTransaction et = em.getTransaction();
         et.begin();
-
         em.persist(c);
-
         et.commit();
-
-        emf.close();
-        em.close();
+        em.refresh(c);
     }
     public void elimina(int id){
         EntityTransaction et = em.getTransaction();
         et.begin();
-
         PuntiDiEmissione c = getById(id);
         em.remove(c);
-
         et.commit();
-
-        emf.close();
-        em.close();
     }
     public PuntiDiEmissione getById(int id){
 

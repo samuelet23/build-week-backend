@@ -1,34 +1,36 @@
 package dao;
 
 import entities.Mezzi;
+import entities.Tratte;
 import jakarta.persistence.*;
 
-public class MezziDAO {
+public class TratteDAO {
+
     private EntityManagerFactory emf;
     private EntityManager em;
 
-    public MezziDAO() {
+    public TratteDAO() {
         emf = Persistence.createEntityManagerFactory("trasporto_pubblico");
         em = emf.createEntityManager();
     }
 
-    public void aggiungi (Mezzi m){
-            EntityTransaction et = em.getTransaction();
-            et.begin();
-            em.persist(m);
-            et.commit();
-            em.refresh(m);
+    public void aggiungi (Tratte t){
+        EntityTransaction et = em.getTransaction();
+        et.begin();
+        em.persist(t);
+        et.commit();
+        em.refresh(t);
     }
 
     public void elimina(int id){
         EntityTransaction et = em.getTransaction();
         et.begin();
-        Mezzi m = getById(id);
-        em.remove(m);
+        Tratte t = getById(id);
+        em.remove(t);
         et.commit();
     }
 
-    public Mezzi getById(int id){
-        return em.find(Mezzi.class, id);
+    public Tratte getById(int id){
+        return em.find(Tratte.class, id);
     }
 }

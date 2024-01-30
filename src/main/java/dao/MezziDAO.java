@@ -1,6 +1,7 @@
 package dao;
 
 import entities.Mezzi;
+import entities.Tessera;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
@@ -16,11 +17,11 @@ public class MezziDAO {
     }
 
     public void aggiungi (Mezzi m){
-        EntityTransaction et = em.getTransaction();
-        et.begin();
-        em.persist(m);
-        et.commit();
-        em.refresh(m);
+            EntityTransaction et = em.getTransaction();
+            et.begin();
+            em.persist(m);
+            et.commit();
+            em.refresh(m);
     }
 
     public void elimina(int id){

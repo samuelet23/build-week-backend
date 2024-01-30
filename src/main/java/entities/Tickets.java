@@ -11,7 +11,6 @@ public abstract class Tickets {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_abbonamenti")
     @SequenceGenerator(name = "id_abbonamenti", initialValue = 1, allocationSize = 1)
     private int id;
-    @Column(name = "punti_di_emissione")
     @ManyToOne
     @JoinColumn(name = "punto_di_emissione_fk")
     protected PuntiDiEmissione puntiDiEmissione;

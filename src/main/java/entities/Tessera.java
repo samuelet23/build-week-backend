@@ -2,9 +2,10 @@ package entities;
 
 import entities.sottoclassi.Abbonamenti;
 import jakarta.persistence.*;
-import org.hibernate.annotations.CollectionIdJdbcTypeCode;
 
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -18,20 +19,20 @@ public class Tessera {
     @JoinColumn(name = "utente_fk")
     private Utente utente;
     @Column(name = "data_acquisto")
-    private Date dataAcquisto;
+    private LocalDate dataAcquisto;
     @Column(name = "data_scadenza")
-    private Date dataScadenza;
+    private LocalDate dataScadenza;
 
     @Column(name = "numero_tessera")
     private String numeroTessera;
 
     @OneToMany(mappedBy = "tessera")
-    private Set<Abbonamenti> abbonamenti;
+    private Set<Abbonamenti> abbonamenti = new HashSet<>();
 
 
     public Tessera(){}
 
-    public Tessera(int id, Utente utente, Date dataAcquisto, Date dataScadenza, String numeroTessera, Set<Abbonamenti> abbonamenti) {
+    public Tessera(int id, Utente utente, LocalDate dataAcquisto, LocalDate dataScadenza, String numeroTessera, Set<Abbonamenti> abbonamenti) {
         this.id = id;
         this.utente = utente;
         this.dataAcquisto = dataAcquisto;
@@ -56,19 +57,19 @@ public class Tessera {
         this.utente = utente;
     }
 
-    public Date getDataAcquisto() {
+    public LocalDate getDataAcquisto() {
         return dataAcquisto;
     }
 
-    public void setDataAcquisto(Date dataAcquisto) {
+    public void setDataAcquisto(LocalDate dataAcquisto) {
         this.dataAcquisto = dataAcquisto;
     }
 
-    public Date getDataScadenza() {
+    public LocalDate getDataScadenza() {
         return dataScadenza;
     }
 
-    public void setDataScadenza(Date dataScadenza) {
+    public void setDataScadenza(LocalDate dataScadenza) {
         this.dataScadenza = dataScadenza;
     }
 
@@ -99,22 +100,6 @@ public class Tessera {
                 '}';
     }
 
-    public Date calcolaScadenza(Date dataAcquisto, int abbonamento) {
-        Date dataScadenza = new Date();
-        dataScadenza.setTime(dataAcquisto.getTime() + ((long) abbonamento * 30 * 24 * 60 * 60 * 1000));
-        return dataScadenza;
-
-    }
-
-    public void rinnovaTessera(Date dataAcquisto, int abbonamento) {
-        this.dataAcquisto = new Date();
-        this.dataScadenza = calcolaScadenza(dataAcquisto, abbonamento);
-    }
-
-    public boolean verificaScadenza(Date dataScadenza) {
-        Date dataOggi = new Date();
-        return dataOggi.after(dataScadenza);
-    }
 
 
 }

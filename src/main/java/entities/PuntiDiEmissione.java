@@ -15,8 +15,6 @@ public class PuntiDiEmissione {
     private String nome;
 
     private String citta;
-    @OneToMany(mappedBy = "PuntiDiEmissione")
-    @Column(name = "tickets_emessi")
     @OneToMany(mappedBy = "puntiDiEmissione")
     private Set<Tickets> tickets_emessi;
 

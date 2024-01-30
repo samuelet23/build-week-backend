@@ -34,7 +34,11 @@ public class Mezzi {
 
     public Mezzi(TipoMezzo tipo, int capienza, boolean in_manutenzione, List<Biglietti> biglietti, List<Tratte> lista_tratte, List<Manutenzioni> lista_manutenzioni) {
         this.tipo = tipo;
-        this.capienza = capienza;
+        if (tipo == TipoMezzo.AUTOBUS){
+            this.capienza = 40;
+        } else {
+            this.capienza = 60;
+        }
         this.in_manutenzione = in_manutenzione;
         this.biglietti = biglietti;
         this.lista_tratte = lista_tratte;
@@ -55,14 +59,15 @@ public class Mezzi {
 
     public void setTipo(TipoMezzo tipo) {
         this.tipo = tipo;
+        if (tipo == TipoMezzo.AUTOBUS){
+            this.capienza = 40;
+        } else {
+            this.capienza = 60;
+        }
     }
 
     public int getCapienza() {
         return capienza;
-    }
-
-    public void setCapienza(int capienza) {
-        this.capienza = capienza;
     }
 
     public boolean isIn_manutenzione() {

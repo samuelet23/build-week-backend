@@ -17,7 +17,7 @@ public class Utente {
     @Column(name = "data_nascita")
     private Date dataNascita;
 
-    @Column(name = "numero_tessera")
+    @JoinColumn(name = "numero_tessera")
     @OneToOne(mappedBy = "utente")
     private Tessera numeroTessera;
 

@@ -1,11 +1,9 @@
 package dao;
 
+import entities.DistributoriAutomatici;
 import entities.PuntiDiEmissione;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import jakarta.persistence.*;
 
 public class PuntiDiEmissioneDAO {
     private EntityManagerFactory emf;
@@ -18,28 +16,34 @@ public class PuntiDiEmissioneDAO {
     public void aggiungi(PuntiDiEmissione c){
         EntityTransaction et = em.getTransaction();
         et.begin();
-
         em.persist(c);
-
         et.commit();
-
-        emf.close();
-        em.close();
+        em.refresh(c);
     }
     public void elimina(int id){
         EntityTransaction et = em.getTransaction();
         et.begin();
-
         PuntiDiEmissione c = getById(id);
         em.remove(c);
-
         et.commit();
-
-        emf.close();
-        em.close();
     }
     public PuntiDiEmissione getById(int id){
 
         return em.find(PuntiDiEmissione.class, id);
+    }
+
+    public void setFuoriServizio (DistributoriAutomatici fuoriServizio){
+        EntityTransaction et = em.getTransaction();
+        et.begin();
+        Query setFuoriServizio = em.createNamedQuery("setFuoriServizio");
+        setFuoriServizio.setParameter("fuoriServizio",fuoriServizio );
+        et.commit();
+    }
+    public void setAttivo (DistributoriAutomatici attivo){
+        EntityTransaction et = em.getTransaction();
+        et.begin();
+        Query setAttivo = em.createNamedQuery("setAttivo");
+        setAttivo.setParameter("attivo",attivo );
+        et.commit();
     }
 }

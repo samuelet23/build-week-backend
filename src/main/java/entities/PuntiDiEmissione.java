@@ -1,26 +1,28 @@
 package entities;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.List;
+
+import java.util.Set;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class PuntiDiEmissione {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "id_punti_emissione")
+    @SequenceGenerator(name = "id_punti_emissione", initialValue = 1, allocationSize = 1)
     private int id;
 
     private String nome;
 
     private String citta;
-    @OneToMany(mappedBy = "PuntiDiEmissione")
-    @Column(name = "tickets_emessi")
-    private List<Tickets> tickets_emessi;
+    @OneToMany(mappedBy = "puntiDiEmissione")
+    private Set<Tickets> tickets_emessi;
 
     public PuntiDiEmissione() {
     }
 
-    public PuntiDiEmissione(int id, String nome, String citta, List<Tickets> tickets_emessi) {
+    public PuntiDiEmissione(int id, String nome, String citta, Set<Tickets> tickets_emessi) {
         this.id = id;
         this.nome = nome;
         this.citta = citta;
@@ -51,11 +53,11 @@ public class PuntiDiEmissione {
         this.citta = citta;
     }
 
-    public List<Tickets> getTickets_emessi() {
+    public Set<Tickets> getTickets_emessi() {
         return tickets_emessi;
     }
 
-    public void setTickets_emessi(List<Tickets> tickets_emessi) {
+    public void setTickets_emessi(Set<Tickets> tickets_emessi) {
         this.tickets_emessi = tickets_emessi;
     }
 

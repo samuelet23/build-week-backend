@@ -8,7 +8,6 @@ import org.slf4j.*;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -43,12 +42,8 @@ public class Main {
         utente.setNome("Mario");
         utente.setCognome("Rossi");
         utente.setDataNascita(LocalDate.of(2000,Month.APRIL, 15 ));
-        try{
-        utenteDao.aggiungi(utente);
-        infoLogger.info("Utente aggiunto correttamente");
-        }catch (Exception e){
-            errorLogger.error("ERRORE: Utente non aggiunto");
-        }
+
+        saveUtente(utente);
 
         Tessera tessera = new Tessera();
         tessera.setNumeroTessera("202040");
@@ -56,6 +51,7 @@ public class Main {
         tessera.setDataScadenza(LocalDate.of(2025,Month.FEBRUARY, 12));
         tessera.setUtente(utente);
 
+        saveTessera(tessera);
 
         Biglietti b = new Biglietti();
         Abbonamenti a = new Abbonamenti();
@@ -65,12 +61,8 @@ public class Main {
         b.setDataEmissione(LocalDate.of(2024, Month.FEBRUARY, 2));
         b.setPuntiDiEmissione(d);
 
-        try{
-        ticketsDao.aggiungi(b);
-            infoLogger.info("Il biglietto è stato aggiunto correttamente");
-        }catch (Exception e){
-            errorLogger.error("ERRORE: Il biglietto non è stato aggiunto");
-        }
+
+        saveTickets(b);
 
         a.setPrezzo(100);
         a.setPeriodicita(Periodicita.MENSILE);
@@ -80,17 +72,9 @@ public class Main {
         a.setScadenza(scadenzaMensile);
         a.setPuntiDiEmissione(d);
         tessera.setAbbonamenti(Set.of(a));
-
-        saveTessera(tessera);
-
         a.setTessera(tessera);
 
-        try{
-        ticketsDao.aggiungi(a);
-            infoLogger.info("Il ticket è stato aggiunto correttamente");
-        }catch (Exception e ){
-            errorLogger.error("ERRORE: il ticket non è stato aggiunto");
-        }
+        saveTickets(a);
 
 
 
@@ -160,6 +144,23 @@ public class Main {
         infoLogger.info("Tessera aggiunta");
         } catch (Exception e){
         errorLogger.error("Tessera non aggiunta: ERRORE");
+        }
+    }
+    public static void saveTickets (Tickets tickets){
+        try {
+            ticketsDao.aggiungi(tickets);
+            infoLogger.info("Tickets aggiunto");
+        } catch (Exception e){
+            errorLogger.error("Tickets non aggiunto: ERRORE");
+        }
+    }
+
+    public static void saveUtente (Utente utente) {
+        try{
+            utenteDao.aggiungi(utente);
+            infoLogger.info("Utente aggiunto correttamente");
+        }catch (Exception e){
+            errorLogger.error("ERRORE: Utente non aggiunto");
         }
     }
 

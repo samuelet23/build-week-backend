@@ -17,9 +17,8 @@ public class Utente {
     @Column(name = "data_nascita")
     private Date dataNascita;
 
-    @Column(name = "numero_tessera")
     @OneToOne(mappedBy = "utente")
-    private Tessera numeroTessera;
+    private Tessera numero_tessera;
 
     public Utente(){}
 
@@ -28,7 +27,7 @@ public class Utente {
         this.nome = nome;
         this.cognome = cognome;
         this.dataNascita = dataNascita;
-        this.numeroTessera = numeroTessera;
+        this.numero_tessera = numeroTessera;
     }
 
     @Override
@@ -38,7 +37,7 @@ public class Utente {
                 ", nome='" + nome + '\'' +
                 ", cognome='" + cognome + '\'' +
                 ", dataNascita=" + dataNascita +
-                ", numeroTessera=" + numeroTessera +
+                ", numeroTessera=" + numero_tessera +
                 '}';
     }
 
@@ -75,10 +74,10 @@ public class Utente {
     }
 
     public Tessera getNumeroTessera() {
-        return numeroTessera;
+        return numero_tessera;
     }
 
     public void setNumeroTessera(Tessera numeroTessera) {
-        this.numeroTessera = numeroTessera;
+        this.numero_tessera = numeroTessera;
     }
 }

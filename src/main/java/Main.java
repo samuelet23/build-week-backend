@@ -51,7 +51,6 @@ public class Main {
         Tessera tessera = new Tessera();
         tessera.setNumeroTessera("202040");
         tessera.setDataAcquisto(LocalDate.of(2024,Month.FEBRUARY, 12));
-        tessera.setDataScadenza(LocalDate.of(2025,Month.FEBRUARY, 12));
         tessera.setUtente(utente);
 
         saveTessera(tessera);
@@ -75,22 +74,10 @@ public class Main {
         a.setScadenza(scadenzaMensile);
         a.setPuntiDiEmissione(d);
         tessera.setAbbonamenti(Set.of(a));
-
-        tesseraDao.aggiungi(tessera);
         a.setTessera(tessera);
 
         saveTickets(a);
 
-        Mezzi m1 = new Mezzi();
-        m1.setTipo(TipoMezzo.TRAM);
-        m1.setIn_manutenzione(false);
-        try {
-            mezziDAO.aggiungi(m1);
-            infoLogger.info("Aggiunta del mezzo riuscita con successo!");
-        } catch (Exception e){
-            e.getMessage();
-            errorLogger.error("Aggiunta di mezzo non riuscita");
-        }
 
 
         vidimaBiglietto(m1,b);
@@ -103,15 +90,32 @@ public class Main {
         tratta1.setTempo_medio(Time.valueOf("03:03:05"));
         saveTratta(tratta1,m1);
 
+<<<<<<<<< Temporary merge branch 1
         Manutenzioni man1 = new Manutenzioni();
         man1.setData_inizio(LocalDate.now());
         man1.setData_fine(man1.getData_inizio().plusWeeks(2));
+	    saveManutenzioni(man1, m1);
 
-
-        saveManutenzioni(man1, m1);
-        toggleStatusDistributore((DistributoriAutomatici) d);
+        System.out.println(tesseraDao.checkValidationTessera(utente));
 
     }
+
+    public static void emissioneBiglietto(PuntiDiEmissione puntiDiEmissione){
+        Biglietti biglietto = new Biglietti();
+        biglietto.setValido(true);
+        biglietto.setPuntiDiEmissione(puntiDiEmissione);
+        biglietto.setDataEmissione(LocalDate.now());
+        biglietto.setPrezzo(3);
+    }
+//    public void AcquistaAbbonamento(Utente utente){
+//        if (utente.getNumeroTessera() != null  ) {
+//
+//        }
+//
+//        saveManutenzioni(man1, m1);
+//        toggleStatusDistributore((DistributoriAutomatici) d);
+//
+//    }
 
     public static void saveManutenzioni(Manutenzioni man, Mezzi m){
             man.setMezzo(m);
@@ -153,17 +157,6 @@ public class Main {
         }
     }
 
-    public static void emissioneBiglietto(PuntiDiEmissione puntiDiEmissione){
-        Biglietti biglietto = new Biglietti();
-        biglietto.setValido(true);
-        biglietto.setPuntiDiEmissione(puntiDiEmissione);
-        biglietto.setDataEmissione(LocalDate.now());
-        biglietto.setPrezzo(3);
-    }
-    public void AcquistaAbbonamento(Utente utente){
-        if (utente.getNumeroTessera() != null  ) {
-
-        }
     public static void saveTessera (Tessera tessera){
         try {
         tesseraDao.aggiungi(tessera);

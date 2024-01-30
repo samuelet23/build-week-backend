@@ -42,7 +42,12 @@ public class TesseraDao {
         Query check = em.createNamedQuery("validationTessera");
         check.setParameter("oggi", oggi);
         check.setParameter("numeroTessera", utente.getNumeroTessera());
-        et.commit();
 
+        et.commit();
+        if (check.getSingleResult().equals(0)){
+            return false;
+        } else {
+            return true;
+        }
     }
 }

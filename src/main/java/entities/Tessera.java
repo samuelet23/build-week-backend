@@ -10,6 +10,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "tessera")
+@NamedQuery(name ="validationTessera", query = "SELECT t FROM Tessera t WHERE t.dataScadenza < :oggi AND utente.numero_tessera = :numeroTessera")
 public class Tessera {
     @Id
     @GeneratedValue(strategy =GenerationType.SEQUENCE, generator = "id_tessera")

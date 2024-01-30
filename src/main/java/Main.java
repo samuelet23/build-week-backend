@@ -97,6 +97,7 @@ public class Main {
 
 
         saveManutenzioni(man1, m1);
+        toggleStatusDistributore((DistributoriAutomatici) d);
 
     }
 
@@ -167,6 +168,16 @@ public class Main {
             infoLogger.info("Mezzo aggiornato!");
         } catch (Exception e){
             errorLogger.error("Mezzo non aggiornato: ERRORE");
+        }
+    }
+
+    public static void toggleStatusDistributore (DistributoriAutomatici distributore){
+        try {
+            distributore.setIn_servizio(!distributore.isIn_servizio());
+            puntiDiEmissioneDAO.aggiungi(distributore);
+            infoLogger.info("Distributore aggiornato!");
+        } catch (Exception e){
+            errorLogger.error("Distributore non aggiornato: ERRORE");
         }
     }
 }

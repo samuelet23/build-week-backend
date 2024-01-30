@@ -1,6 +1,7 @@
 package entities;
 
 import jakarta.persistence.*;
+import java.util.List;
 
 import java.util.Set;
 
@@ -14,6 +15,7 @@ public class PuntiDiEmissione {
     private String nome;
 
     private String citta;
+    @OneToMany(mappedBy = "PuntiDiEmissione")
     @Column(name = "tickets_emessi")
     @OneToMany(mappedBy = "puntiDiEmissione")
     private Set<Tickets> tickets_emessi;

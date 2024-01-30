@@ -3,10 +3,10 @@ package dao;
 import entities.Manutenzioni;
 import entities.Tessera;
 import entities.Tickets;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.Persistence;
+import entities.Utente;
+import jakarta.persistence.*;
+
+import java.time.LocalDate;
 
 public class TesseraDao {
     private EntityManagerFactory emf;
@@ -35,5 +35,14 @@ public class TesseraDao {
 
     public Tessera getById(int id){
         return em.find(Tessera.class, id);
+    }
+
+    public void checkValidationTessera(Utente utente){
+        EntityTransaction et = em.getTransaction();
+        et.begin();
+        LocalDate oggi = LocalDate.now();
+        Query check = em.createNamedQuery("validationTessera");
+        check.setParameter("oggi", oggi);
+        check.setParameter("numeroTessera", utente.getNumeroTessera());
     }
 }

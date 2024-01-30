@@ -1,6 +1,6 @@
 package dao;
 
-import entities.Mezzi;
+
 import entities.Tratte;
 import jakarta.persistence.*;
 

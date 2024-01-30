@@ -1,7 +1,6 @@
 package dao;
 
-import entities.Manutenzioni;
-import entities.Tickets;
+
 import entities.Utente;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;

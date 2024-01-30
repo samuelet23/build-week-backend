@@ -1,6 +1,6 @@
 package dao;
 
-import entities.Manutenzioni;
+
 import entities.PuntiDiEmissione;
 import entities.Tickets;
 import jakarta.persistence.*;

@@ -35,7 +35,7 @@ public class TesseraDao {
         return em.find(Tessera.class, id);
     }
 
-    public boolean checkValidationTessera(Utente utente){
+    public void checkValidationTessera(Utente utente){
         EntityTransaction et = em.getTransaction();
         et.begin();
         LocalDate oggi = LocalDate.now();

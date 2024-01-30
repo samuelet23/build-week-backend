@@ -1,8 +1,6 @@
 package dao;
 
-import entities.Manutenzioni;
 import entities.Tessera;
-import entities.Tickets;
 import entities.Utente;
 import jakarta.persistence.*;
 
@@ -37,12 +35,14 @@ public class TesseraDao {
         return em.find(Tessera.class, id);
     }
 
-    public void checkValidationTessera(Utente utente){
+    public boolean checkValidationTessera(Utente utente){
         EntityTransaction et = em.getTransaction();
         et.begin();
         LocalDate oggi = LocalDate.now();
         Query check = em.createNamedQuery("validationTessera");
         check.setParameter("oggi", oggi);
         check.setParameter("numeroTessera", utente.getNumeroTessera());
+        et.commit();
+
     }
 }

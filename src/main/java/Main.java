@@ -45,6 +45,9 @@ public class Main {
 
         saveUtente(utente);
 
+        emissioneBiglietto(d);
+
+
         Tessera tessera = new Tessera();
         tessera.setNumeroTessera("202040");
         tessera.setDataAcquisto(LocalDate.of(2024,Month.FEBRUARY, 12));
@@ -90,7 +93,21 @@ public class Main {
         Manutenzioni man1 = new Manutenzioni();
         man1.setData_inizio(LocalDate.now());
         man1.setData_fine(man1.getData_inizio().plusWeeks(2));
+	
 
+    }
+
+    public static void emissioneBiglietto(PuntiDiEmissione puntiDiEmissione){
+        Biglietti biglietto = new Biglietti();
+        biglietto.setValido(true);
+        biglietto.setPuntiDiEmissione(puntiDiEmissione);
+        biglietto.setDataEmissione(LocalDate.now());
+        biglietto.setPrezzo(3);
+    }
+    public void AcquistaAbbonamento(Utente utente){
+        if (utente.getNumeroTessera() != null  ) {
+
+        }
 
         saveManutenzioni(man1, m1);
         toggleStatusDistributore((DistributoriAutomatici) d);

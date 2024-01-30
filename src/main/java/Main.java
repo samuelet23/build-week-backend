@@ -47,8 +47,10 @@ public class Main {
 
         try {
             tratteDAO.aggiungi(tratta1);
+            infoLogger.info("Aggiunta tratta riuscita con successo!");
         } catch (Exception e){
             e.getMessage();
+            errorLogger.error("Aggiunta della tratta non riuscita");
         }
 
 

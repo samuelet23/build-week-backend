@@ -1,9 +1,8 @@
 package entities.sottoclassi;
-
-import entities.PuntiEmissione;
+import entities.PuntiDiEmissione;
 import entities.Tessera;
 import entities.Tickets;
-import entities.type.Periodicità;
+import entities.type.Periodicita;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -17,18 +16,20 @@ public class Abbonamenti extends Tickets {
     @SequenceGenerator(name = "id_abbonamenti", initialValue = 1, allocationSize = 1)
     private int id;
 
+    @ManyToOne
+    @JoinColumn(name = "tessera_fk")
     private Tessera tessera;
-    private Periodicità periodicita;
+    private Periodicita periodicita;
     private LocalDate scadenza;
 
-    public Abbonamenti(int id, Tessera tessera, Periodicità periodicita, LocalDate scadenza) {
+    public Abbonamenti(int id, Tessera tessera, Periodicita periodicita, LocalDate scadenza) {
         this.id = id;
         this.tessera = tessera;
         this.periodicita = periodicita;
         this.scadenza = scadenza;
     }
 
-    public Abbonamenti(PuntiEmissione puntiDiEmissione, LocalDate dataEmissione, boolean valido, int prezzo, int id, Tessera tessera, Periodicità periodicita, LocalDate scadenza) {
+    public Abbonamenti(PuntiDiEmissione puntiDiEmissione, LocalDate dataEmissione, boolean valido, int prezzo, int id, Tessera tessera, Periodicita periodicita, LocalDate scadenza) {
         super(puntiDiEmissione, dataEmissione, valido, prezzo);
         this.id = id;
         this.tessera = tessera;
@@ -40,7 +41,6 @@ public class Abbonamenti extends Tickets {
     public String toString() {
         return "Abbonamenti{" +
                 "id=" + id +
-                ", tessera=" + tessera +
                 ", periodicita=" + periodicita +
                 ", scadenza=" + scadenza +
                 ", puntiDiEmissione=" + puntiDiEmissione +
@@ -66,11 +66,11 @@ public class Abbonamenti extends Tickets {
         this.tessera = tessera;
     }
 
-    public Periodicità getPeriodicita() {
+    public Periodicita getPeriodicita() {
         return periodicita;
     }
 
-    public void setPeriodicita(Periodicità periodicita) {
+    public void setPeriodicita(Periodicita periodicita) {
         this.periodicita = periodicita;
     }
 

@@ -1,25 +1,43 @@
 package entities;
 
+import entities.sottoclassi.Abbonamenti;
+import jakarta.persistence.*;
+import org.hibernate.annotations.CollectionIdJdbcTypeCode;
+
 import java.util.Date;
+import java.util.Set;
 
+@Entity
+@Table(name = "tessera")
 public class Tessera {
+    @Id
+    @GeneratedValue(strategy =GenerationType.SEQUENCE, generator = "id_tessera")
+    @SequenceGenerator(name = "id_tessera", initialValue = 1, allocationSize = 1)
     private int id;
-    private String utente;
-
+    @OneToOne
+    @JoinColumn(name = "utente_fk")
+    private Utente utente;
+    @Column(name = "data_acquisto")
     private Date dataAcquisto;
+    @Column(name = "data_scadenza")
     private Date dataScadenza;
 
+    @Column(name = "numero_tessera")
     private String numeroTessera;
 
-    private int abbonamento;
+    @OneToMany(mappedBy = "tessera")
+    private Set<Abbonamenti> abbonamenti;
 
-    public Tessera(int id, String utente, Date dataAcquisto, Date dataScadenza, String numeroTessera, int abbonamento) {
+
+    public Tessera(){}
+
+    public Tessera(int id, Utente utente, Date dataAcquisto, Date dataScadenza, String numeroTessera, Set<Abbonamenti> abbonamenti) {
         this.id = id;
         this.utente = utente;
         this.dataAcquisto = dataAcquisto;
         this.dataScadenza = dataScadenza;
         this.numeroTessera = numeroTessera;
-        this.abbonamento = abbonamento;
+        this.abbonamenti = abbonamenti;
     }
 
     public int getId() {
@@ -30,11 +48,11 @@ public class Tessera {
         this.id = id;
     }
 
-    public String getUtente() {
+    public Utente getUtente() {
         return utente;
     }
 
-    public void setUtente(String utente) {
+    public void setUtente(Utente utente) {
         this.utente = utente;
     }
 
@@ -62,18 +80,23 @@ public class Tessera {
         this.numeroTessera = numeroTessera;
     }
 
-    public int getAbbonamento() {
-        return abbonamento;
+    public Set<Abbonamenti> getAbbonamenti() {
+        return abbonamenti;
     }
 
-    public void setAbbonamento(int abbonamento) {
-        this.abbonamento = abbonamento;
+    public void setAbbonamenti(Set<Abbonamenti> abbonamenti) {
+        this.abbonamenti = abbonamenti;
     }
-
 
     @Override
     public String toString() {
-        return "Tessera{" + "id=" + id + ", utente=" + utente + ", dataAcquisto=" + dataAcquisto + ", dataScadenza=" + dataScadenza + ", numeroTessera=" + numeroTessera + ", abbonamento=" + abbonamento + '}';
+        return "Tessera{" +
+                "id=" + id +
+                ", dataAcquisto=" + dataAcquisto +
+                ", dataScadenza=" + dataScadenza +
+                ", numeroTessera='" + numeroTessera + '\'' +
+                ", abbonamenti=" + abbonamenti +
+                '}';
     }
 
     public Date calcolaScadenza(Date dataAcquisto, int abbonamento) {
@@ -93,11 +116,5 @@ public class Tessera {
         return dataOggi.after(dataScadenza);
     }
 
-        public void stampaTessera() {
-            System.out.println("Tessera n°: " + this.numeroTessera);
-            System.out.println("Utente: " + this.utente);
-            System.out.println("Data acquisto: " + this.dataAcquisto);
-            System.out.println("Data scadenza: " + this.dataScadenza);
-            System.out.println("Abbonamento: " + this.abbonamento);
-    }
+
 }

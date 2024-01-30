@@ -7,6 +7,8 @@ import java.time.LocalDate;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Tickets {
     @Column(name = "punti_di_emissione")
+    @ManyToOne
+    @JoinColumn(name = "punto_di_emissione_fk")
     protected PuntiDiEmissione puntiDiEmissione;
     @Column(name = "data_emissione")
     protected LocalDate dataEmissione;

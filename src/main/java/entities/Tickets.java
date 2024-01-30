@@ -6,6 +6,9 @@ import java.time.LocalDate;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@NamedQuery(name = "bigliettiEmessiData", query = "SELECT COUNT(t) FROM Tickets t WHERE t.dataEmissione BETWEEN :dataInizio AND :dataFine")
+@NamedQuery(name = "bigliettiEmessiPuntoEmissione", query = "SELECT COUNT(t) FROM Tickets t WHERE t.puntiDiEmissione = :puntoEmissione")
+@NamedQuery(name = "bigliettiEmessiPuntoEmissioneData", query = "SELECT COUNT(t) FROM Tickets t WHERE t.dataEmissione BETWEEN :dataInizio AND :dataFine AND t.puntiDiEmissione = :puntoEmissione")
 public abstract class Tickets {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_abbonamenti")

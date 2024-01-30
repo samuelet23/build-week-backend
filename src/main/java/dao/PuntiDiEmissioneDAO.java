@@ -1,5 +1,6 @@
 package dao;
 
+import entities.DistributoriAutomatici;
 import entities.PuntiDiEmissione;
 
 import jakarta.persistence.*;
@@ -29,5 +30,20 @@ public class PuntiDiEmissioneDAO {
     public PuntiDiEmissione getById(int id){
 
         return em.find(PuntiDiEmissione.class, id);
+    }
+
+    public void setFuoriServizio (DistributoriAutomatici fuoriServizio){
+        EntityTransaction et = em.getTransaction();
+        et.begin();
+        Query setFuoriServizio = em.createNamedQuery("setFuoriServizio");
+        setFuoriServizio.setParameter("fuoriServizio",fuoriServizio );
+        et.commit();
+    }
+    public void setAttivo (DistributoriAutomatici attivo){
+        EntityTransaction et = em.getTransaction();
+        et.begin();
+        Query setAttivo = em.createNamedQuery("setAttivo");
+        setAttivo.setParameter("attivo",attivo );
+        et.commit();
     }
 }

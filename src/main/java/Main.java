@@ -1,12 +1,11 @@
+import jakarta.persistence.Query;
+import ch.qos.logback.core.encoder.EchoEncoder;
 import dao.*;
+import entities.type.*;
 import entities.*;
 import entities.sottoclassi.*;
-import entities.type.*;
-import jakarta.persistence.Query;
 import org.slf4j.*;
 import java.sql.Time;
-import entities.type.Periodicita;
-
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
@@ -44,7 +43,12 @@ public class Main {
         utente.setNome("Mario");
         utente.setCognome("Rossi");
         utente.setDataNascita(LocalDate.of(2000,Month.APRIL, 15 ));
+        try{
         utenteDao.aggiungi(utente);
+        infoLogger.info("Utente aggiunto correttamente");
+        }catch (Exception e){
+            errorLogger.error("ERRORE: Utente non aggiunto");
+        }
 
         Tessera tessera = new Tessera();
         tessera.setNumeroTessera("202040");
@@ -61,7 +65,12 @@ public class Main {
         b.setDataEmissione(LocalDate.of(2024, Month.FEBRUARY, 2));
         b.setPuntiDiEmissione(d);
 
+        try{
         ticketsDao.aggiungi(b);
+            infoLogger.info("Il biglietto è stato aggiunto correttamente");
+        }catch (Exception e){
+            errorLogger.error("ERRORE: Il biglietto non è stato aggiunto");
+        }
 
         a.setPrezzo(100);
         a.setPeriodicita(Periodicita.MENSILE);
@@ -76,8 +85,12 @@ public class Main {
 
         a.setTessera(tessera);
 
-
+        try{
         ticketsDao.aggiungi(a);
+            infoLogger.info("Il ticket è stato aggiunto correttamente");
+        }catch (Exception e ){
+            errorLogger.error("ERRORE: il ticket non è stato aggiunto");
+        }
 
 
 

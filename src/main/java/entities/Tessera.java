@@ -27,6 +27,8 @@ public class Tessera {
     @Column(name = "numero_tessera")
     private String numeroTessera;
 
+    private boolean valida;
+
     @OneToMany(mappedBy = "tessera")
     private Set<Abbonamenti> abbonamenti = new HashSet<>();
 
@@ -64,15 +66,25 @@ public class Tessera {
 
     public void setDataAcquisto(LocalDate dataAcquisto) {
         this.dataAcquisto = dataAcquisto;
+        this.dataScadenza = dataAcquisto.plusYears(1);
     }
 
     public LocalDate getDataScadenza() {
         return dataScadenza;
     }
 
+    public void setDataScadenza() {
+        this.dataScadenza = this.dataScadenza.plusYears(1);
+    }
+
     public void setDataScadenza(LocalDate dataScadenza) {
         this.dataScadenza = dataScadenza;
     }
+
+    public boolean isValida() {
+        return valida;
+    }
+
 
     public String getNumeroTessera() {
         return numeroTessera;

@@ -9,6 +9,8 @@ import java.util.List;
 
 @Entity
 @Table (name = "mezzi")
+@NamedQuery( name = "setInManutenzione", query = "UPDATE Mezzi m SET m.in_manutenzione = true WHERE m.id = :id")
+@NamedQuery( name = "setOffManutenzione", query = "UPDATE Mezzi m SET m.in_manutenzione = false WHERE m.id = :id")
 public class Mezzi {
     @Id
     @GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "id_mezzi")

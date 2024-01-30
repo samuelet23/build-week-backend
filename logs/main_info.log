@@ -1,1 +1,56 @@
 2024-01-30 12:26:36,243 INFO main main_info - Aggiunta del mezzo riuscita con successo!
+2024-01-30 12:39:07,911 INFO main main_info - Aggiunta del mezzo riuscita con successo!
+2024-01-30 12:39:07,919 INFO main main_info - Aggiunta tratta riuscita con successo!
+2024-01-30 12:41:38,715 INFO main main_info - Aggiunta del mezzo riuscita con successo!
+2024-01-30 12:41:38,727 INFO main main_info - Aggiunta tratta riuscita con successo!
+2024-01-30 12:48:42,908 INFO main main_info - Aggiunta del mezzo riuscita con successo!
+2024-01-30 12:48:42,915 INFO main main_info - Aggiunta tratta riuscita con successo!
+2024-01-30 12:48:42,922 INFO main main_info - Aggiunta manutenzione riuscita con successo!
+2024-01-30 13:05:45,872 INFO main main_info - Aggiunta del mezzo riuscita con successo!
+2024-01-30 13:05:45,878 INFO main main_info - Aggiunta tratta riuscita con successo!
+2024-01-30 13:06:32,291 INFO main main_info - Aggiunta del mezzo riuscita con successo!
+2024-01-30 13:06:32,301 INFO main main_info - Aggiunta tratta riuscita con successo!
+2024-01-30 13:06:32,355 INFO main main_info - Aggiunta manutenzione riuscita con successo!
+2024-01-30 14:43:41,015 INFO main main_info - Punto di emissioneDistributoriAutomatici{in_servizio=true}aggiunto
+2024-01-30 14:43:41,048 INFO main main_info - Tessera aggiunta
+2024-01-30 14:43:41,062 INFO main main_info - Aggiunta del mezzo riuscita con successo!
+2024-01-30 14:43:41,076 INFO main main_info - Aggiunta tratta riuscita con successo!
+2024-01-30 14:43:41,131 INFO main main_info - Aggiunta manutenzione riuscita con successo!
+2024-01-30 14:59:34,867 INFO main main_info - Punto di emissioneDistributoriAutomatici{in_servizio=true}aggiunto
+2024-01-30 14:59:34,898 INFO main main_info - Tessera aggiunta
+2024-01-30 14:59:34,926 INFO main main_info - Aggiunta del mezzo riuscita con successo!
+2024-01-30 14:59:34,934 INFO main main_info - Aggiunta tratta riuscita con successo!
+2024-01-30 14:59:34,994 INFO main main_info - Aggiunta manutenzione riuscita con successo!
+2024-01-30 15:30:30,540 INFO main main_info - Aggiunta del mezzo riuscita con successo!
+2024-01-30 15:30:30,547 INFO main main_info - Punto di emissioneDistributoriAutomatici{in_servizio=true}aggiunto
+2024-01-30 15:30:30,575 INFO main main_info - Tessera aggiunta
+2024-01-30 15:30:30,657 INFO main main_info - Biglietto aggiornato!
+2024-01-30 15:30:30,663 INFO main main_info - Mezzo aggiornato!
+2024-01-30 15:30:30,671 INFO main main_info - Aggiunta tratta riuscita con successo!
+2024-01-30 15:30:30,732 INFO main main_info - Aggiunta manutenzione riuscita con successo!
+2024-01-30 15:33:38,798 INFO main main_info - Aggiunta del mezzo riuscita con successo!
+2024-01-30 15:33:38,805 INFO main main_info - Punto di emissioneDistributoriAutomatici{in_servizio=true}aggiunto
+2024-01-30 15:33:38,831 INFO main main_info - Tessera aggiunta
+2024-01-30 15:33:38,858 INFO main main_info - Biglietto aggiornato!
+2024-01-30 15:33:38,862 INFO main main_info - Mezzo aggiornato!
+2024-01-30 15:33:38,869 INFO main main_info - Aggiunta tratta riuscita con successo!
+2024-01-30 15:33:38,932 INFO main main_info - Aggiunta manutenzione riuscita con successo!
+2024-01-30 15:44:24,188 INFO main main_info - Aggiunta del mezzo riuscita con successo!
+2024-01-30 15:44:24,197 INFO main main_info - Punto di emissioneDistributoriAutomatici{in_servizio=true}aggiunto
+2024-01-30 15:44:24,223 INFO main main_info - Tessera aggiunta
+2024-01-30 15:44:24,255 INFO main main_info - Biglietto aggiornato!
+2024-01-30 15:44:24,260 INFO main main_info - Mezzo aggiornato!
+2024-01-30 15:44:24,269 INFO main main_info - Aggiunta tratta riuscita con successo!
+2024-01-30 15:44:24,333 INFO main main_info - Aggiunta manutenzione riuscita con successo!
+2024-01-30 15:44:24,336 INFO main main_info - Distributore aggiornato!
+2024-01-30 15:53:45,749 INFO main main_info - Aggiunta del mezzo riuscita con successo!
+2024-01-30 15:53:45,756 INFO main main_info - Punto di emissioneDistributoriAutomatici{in_servizio=true}aggiunto
+2024-01-30 15:53:45,766 INFO main main_info - Utente aggiunto correttamente
+2024-01-30 15:53:45,776 INFO main main_info - Tessera aggiunta
+2024-01-30 15:53:45,783 INFO main main_info - Tickets aggiunto
+2024-01-30 15:53:45,790 INFO main main_info - Tickets aggiunto
+2024-01-30 15:53:45,805 INFO main main_info - Biglietto aggiornato!
+2024-01-30 15:53:45,810 INFO main main_info - Mezzo aggiornato!
+2024-01-30 15:53:45,818 INFO main main_info - Aggiunta tratta riuscita con successo!
+2024-01-30 15:53:45,873 INFO main main_info - Aggiunta manutenzione riuscita con successo!
+2024-01-30 15:53:45,877 INFO main main_info - Distributore aggiornato!

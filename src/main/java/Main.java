@@ -39,6 +39,9 @@ public class Main {
             errorLogger.error("ERRORE: Utente non aggiunto");
         }
 
+        emissioneBiglietto(d);
+
+
         Tessera tessera = new Tessera();
         tessera.setNumeroTessera("202040");
         tessera.setDataAcquisto(LocalDate.of(2024,Month.FEBRUARY, 12));
@@ -105,7 +108,21 @@ public class Main {
             e.getMessage();
             errorLogger.error("Aggiunta della tratta non riuscita");
         }
+        System.out.println(tesseraDao.checkValidationTessera(utente));
 
+    }
+
+    public static void emissioneBiglietto(PuntiDiEmissione puntiDiEmissione){
+        Biglietti biglietto = new Biglietti();
+        biglietto.setValido(true);
+        biglietto.setPuntiDiEmissione(puntiDiEmissione);
+        biglietto.setDataEmissione(LocalDate.now());
+        biglietto.setPrezzo(3);
+    }
+    public void AcquistaAbbonamento(Utente utente){
+        if (utente.getNumeroTessera() != null  ) {
+
+        }
 
     }
 }

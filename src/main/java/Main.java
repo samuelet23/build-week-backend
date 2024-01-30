@@ -7,12 +7,14 @@ import dao.TicketsDao;
 import entities.Tickets;
 import entities.sottoclassi.Abbonamenti;
 import entities.sottoclassi.Biglietti;
-
+import org.slf4j.*;
 import java.sql.Time;
 import java.time.LocalDate;
 
 
 public class Main {
+    private static final Logger errorLogger = LoggerFactory.getLogger("main_error");
+    private static final Logger infoLogger = LoggerFactory.getLogger("main_info");
     public static void main(String[] args) {
         TicketsDao ticketsDao = new TicketsDao();
         TratteDAO tratteDAO = new TratteDAO();
@@ -28,8 +30,10 @@ public class Main {
         m1.setIn_manutenzione(false);
         try {
             mezziDAO.aggiungi(m1);
+            infoLogger.info("Aggiunta del mezzo riuscita con successo!");
         } catch (Exception e){
             e.getMessage();
+            errorLogger.error("Aggiunta di mezzo non riuscita");
         }
 
 

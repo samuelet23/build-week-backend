@@ -48,7 +48,6 @@ public class Main {
         Tessera tessera = new Tessera();
         tessera.setNumeroTessera("202040");
         tessera.setDataAcquisto(LocalDate.of(2024,Month.FEBRUARY, 12));
-        tessera.setDataScadenza(LocalDate.of(2025,Month.FEBRUARY, 12));
         tessera.setUtente(utente);
 
         saveTessera(tessera);
@@ -171,18 +170,8 @@ public class Main {
         List <Biglietti> lista = mezzo.getBiglietti();
         lista.add(biglietto);
         mezzo.setBiglietti(lista);
-        try {
-            ticketsDao.aggiungi(biglietto);
-            infoLogger.info("Biglietto aggiornato!");
-        } catch (Exception e){
-            errorLogger.error("Biglietto non aggiornato: ERRORE");
-        }
-        try {
-            mezziDAO.aggiungi(mezzo);
-            infoLogger.info("Mezzo aggiornato!");
-        } catch (Exception e){
-            errorLogger.error("Mezzo non aggiornato: ERRORE");
-        }
+        saveTickets(biglietto);
+        saveMezzo(mezzo);
     }
 
     public static void toggleStatusDistributore (DistributoriAutomatici distributore){

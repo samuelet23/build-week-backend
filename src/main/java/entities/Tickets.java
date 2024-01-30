@@ -55,4 +55,8 @@ public abstract class Tickets {
     public void setPrezzo(int prezzo) {
         this.prezzo = prezzo;
     }
+
+
+
+
 }

@@ -93,7 +93,9 @@ public class Main {
         Manutenzioni man1 = new Manutenzioni();
         man1.setData_inizio(LocalDate.now());
         man1.setData_fine(man1.getData_inizio().plusWeeks(2));
-	
+	    saveManutenzioni(man1, m1);
+
+        System.out.println(tesseraDao.checkValidationTessera(utente));
 
     }
 
@@ -104,15 +106,15 @@ public class Main {
         biglietto.setDataEmissione(LocalDate.now());
         biglietto.setPrezzo(3);
     }
-    public void AcquistaAbbonamento(Utente utente){
-        if (utente.getNumeroTessera() != null  ) {
-
-        }
-
-        saveManutenzioni(man1, m1);
-        toggleStatusDistributore((DistributoriAutomatici) d);
-
-    }
+//    public void AcquistaAbbonamento(Utente utente){
+//        if (utente.getNumeroTessera() != null  ) {
+//
+//        }
+//
+//        saveManutenzioni(man1, m1);
+//        toggleStatusDistributore((DistributoriAutomatici) d);
+//
+//    }
 
     public static void saveManutenzioni(Manutenzioni man, Mezzi m){
             man.setMezzo(m);
@@ -160,6 +162,7 @@ public class Main {
         infoLogger.info("Tessera aggiunta");
         } catch (Exception e){
         errorLogger.error("Tessera non aggiunta: ERRORE");
+        e.printStackTrace();
         }
     }
     public static void saveTickets (Tickets tickets){
@@ -177,6 +180,7 @@ public class Main {
             infoLogger.info("Utente aggiunto correttamente");
         }catch (Exception e){
             errorLogger.error("ERRORE: Utente non aggiunto");
+            e.printStackTrace();
         }
     }
 

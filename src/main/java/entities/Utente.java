@@ -2,6 +2,7 @@ package entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -15,7 +16,7 @@ public class Utente {
     private String nome;
     private String cognome;
     @Column(name = "data_nascita")
-    private Date dataNascita;
+    private LocalDate dataNascita;
 
     @JoinColumn(name = "numero_tessera")
     @OneToOne(mappedBy = "utente")
@@ -23,7 +24,7 @@ public class Utente {
 
     public Utente(){}
 
-    public Utente(int id, String nome, String cognome, Date dataNascita, Tessera numeroTessera) {
+    public Utente(int id, String nome, String cognome, LocalDate dataNascita, Tessera numeroTessera) {
         this.id = id;
         this.nome = nome;
         this.cognome = cognome;
@@ -66,11 +67,11 @@ public class Utente {
         this.cognome = cognome;
     }
 
-    public Date getDataNascita() {
+    public LocalDate getDataNascita() {
         return dataNascita;
     }
 
-    public void setDataNascita(Date dataNascita) {
+    public void setDataNascita(LocalDate dataNascita) {
         this.dataNascita = dataNascita;
     }
 

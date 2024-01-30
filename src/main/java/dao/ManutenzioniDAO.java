@@ -1,10 +1,8 @@
 package dao;
 
 import entities.Manutenzioni;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.Persistence;
+import entities.Mezzi;
+import jakarta.persistence.*;
 
 public class ManutenzioniDAO {
     private EntityManagerFactory emf;
@@ -28,6 +26,24 @@ public class ManutenzioniDAO {
         et.begin();
         Manutenzioni m = getById(id);
         em.remove(m);
+        et.commit();
+    }
+
+    public void setInManutenzione (Mezzi m){
+        EntityTransaction et = em.getTransaction();
+        et.begin();
+        Query setInManutenzione = em.createNamedQuery("setInManutenzione");
+        setInManutenzione.setParameter("id", m.getId());
+        setInManutenzione.executeUpdate();
+        et.commit();
+    }
+
+    public void setOffManutenzione (Mezzi m){
+        EntityTransaction et = em.getTransaction();
+        et.begin();
+        Query setOffManutenzione = em.createNamedQuery("setOffManutenzione");
+        setOffManutenzione.setParameter("id", m.getId());
+        setOffManutenzione.executeUpdate();
         et.commit();
     }
 

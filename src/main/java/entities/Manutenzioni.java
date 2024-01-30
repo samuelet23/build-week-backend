@@ -19,4 +19,54 @@ private LocalDate data_fine;
 @JoinColumn(name = "mezzo_fk")
 private Mezzi mezzo;
 
+    @Override
+    public String toString() {
+        return "Manutenzioni{" +
+                "id=" + id +
+                ", data_inizio=" + data_inizio +
+                ", data_fine=" + data_fine +
+                ", mezzo=" + mezzo +
+                '}';
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public LocalDate getData_inizio() {
+        return data_inizio;
+    }
+
+    public void setData_inizio(LocalDate data_inizio) {
+        this.data_inizio = data_inizio;
+    }
+
+    public LocalDate getData_fine() {
+        return data_fine;
+    }
+
+    public void setData_fine(LocalDate data_fine) {
+        this.data_fine = data_fine;
+    }
+
+    public Mezzi getMezzo() {
+        return mezzo;
+    }
+
+    public void setMezzo(Mezzi mezzo) {
+        this.mezzo = mezzo;
+    }
+
+    public Manutenzioni(LocalDate data_inizio, LocalDate data_fine, Mezzi mezzo) {
+        this.data_inizio = data_inizio;
+        this.data_fine = data_fine;
+        this.mezzo = mezzo;
+    }
+
+    public Manutenzioni() {
+    }
 }

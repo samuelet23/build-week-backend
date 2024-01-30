@@ -1,13 +1,8 @@
-import dao.MezziDAO;
-import dao.TratteDAO;
-import entities.type.TipoMezzo;
-import dao.PuntiDiEmissioneDAO;
-import dao.TesseraDao;
-import dao.TicketsDao;
-import dao.UtenteDao;
+import dao.*;
 import entities.*;
-import entities.sottoclassi.Abbonamenti;
-import entities.sottoclassi.Biglietti;
+import entities.sottoclassi.*;
+import entities.type.*;
+import jakarta.persistence.Query;
 import org.slf4j.*;
 import java.sql.Time;
 import entities.type.Periodicita;
@@ -24,9 +19,12 @@ public class Main {
         TicketsDao ticketsDao = new TicketsDao();
         TratteDAO tratteDAO = new TratteDAO();
         MezziDAO mezziDAO = new MezziDAO();
+        ManutenzioniDAO manutenzioniDAO = new ManutenzioniDAO();
         PuntiDiEmissioneDAO puntiDiEmissioneDAO = new PuntiDiEmissioneDAO();
         TesseraDao tesseraDao = new TesseraDao();
         UtenteDao utenteDao = new UtenteDao();
+
+
 
         DistributoriAutomatici d = new DistributoriAutomatici();
         d.setIn_servizio(true);
@@ -97,6 +95,21 @@ public class Main {
         } catch (Exception e){
             e.getMessage();
             errorLogger.error("Aggiunta della tratta non riuscita");
+        }
+
+
+        Manutenzioni man1 = new Manutenzioni();
+        man1.setData_inizio(LocalDate.now());
+        man1.setData_fine(man1.getData_inizio().plusWeeks(2));
+        man1.setMezzo(m1);
+        manutenzioniDAO.setInManutenzione(m1);
+
+        try {
+            manutenzioniDAO.aggiungi(man1);
+            infoLogger.info("Aggiunta manutenzione riuscita con successo!");
+        } catch (Exception e){
+            e.getMessage();
+            errorLogger.error("Aggiunta della manutenzione non riuscita");
         }
 
 

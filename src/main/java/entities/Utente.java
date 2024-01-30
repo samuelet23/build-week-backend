@@ -18,6 +18,7 @@ public class Utente {
     @Column(name = "data_nascita")
     private LocalDate dataNascita;
 
+    @JoinColumn(name = "numero_tessera")
     @OneToOne(mappedBy = "utente")
     private Tessera numero_tessera;
 

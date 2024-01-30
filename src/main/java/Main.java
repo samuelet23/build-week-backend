@@ -106,15 +106,14 @@ public class Main {
         biglietto.setDataEmissione(LocalDate.now());
         biglietto.setPrezzo(3);
     }
-//    public void AcquistaAbbonamento(Utente utente){
-//        if (utente.getNumeroTessera() != null  ) {
-//
-//        }
-//
-//        saveManutenzioni(man1, m1);
-//        toggleStatusDistributore((DistributoriAutomatici) d);
-//
-//    }
+    public void AcquistaAbbonamento(Utente utente){
+        if (utente.getNumeroTessera() != null && tesseraDao.checkValidationTessera(utente)) {
+
+
+        }
+
+
+    }
 
     public static void saveManutenzioni(Manutenzioni man, Mezzi m){
             man.setMezzo(m);

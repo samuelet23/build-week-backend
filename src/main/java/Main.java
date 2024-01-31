@@ -151,7 +151,9 @@ public class Main {
 
 
         ticketsDao.bigliettiVidimatiPerMezzo(m1).stream().forEach(biglietti -> System.out.println(biglietti));
+        System.out.println("-----------------------------------");
         ticketsDao.bigliettiVidimatiPerTempo(LocalDate.now(), LocalDate.now().plusDays(1)).stream().forEach(biglietti -> System.out.println(biglietti));
+
 
 
 

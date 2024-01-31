@@ -75,34 +75,39 @@ public class Main {
         tratta1.setTempo_medio(Time.valueOf("03:03:05"));
         tratta1.setTempo_effettivo(Time.valueOf("02:02:05"));
         saveTratta(tratta1,m1);
-//
+
+//          commentato in quanto avevamo bisogno di mezzi non in manutezione
+
 //        Manutenzioni man1 = new Manutenzioni();
 //        man1.setData_inizio(LocalDate.now());
 //        man1.setData_fine(man1.getData_inizio().plusWeeks(2));
 //	    saveManutenzioni(man1, m1);
         toggleStatusDistributore((DistributoriAutomatici) d);
 
+        //test metodo per emissione abbonamento
         try {
             emissioneAbbonamento(utente, d, Periodicita.MENSILE);
             infoLogger.info("Lancio emissioneAbbonamento effettuato");
-
         } catch (Exception e){
             errorLogger.error("Errore nel lancio emissioneAbbonamento");
             e.printStackTrace();
         }
 
+        //test metodo rinnovo tessera
         try {
             rinnovaTessera(tessera);
         } catch (Exception e){
             errorLogger.error(e.getMessage());
         }
 
+        //test metodo conta tratte fatte da un mezzo(id)
         try {
             System.out.println(nTrattaPerMezzo(16));
         } catch (Exception e){
             errorLogger.error(e.getMessage());
         }
 
+        //test metodo per controllare se un mezzo era in manutenzione in un range di data
         try{
             manutenzioniDAO.tracciaMezzoInManutenzione(m1, LocalDate.now(), LocalDate.now().plusWeeks(1)).stream()
                     .forEach(m -> System.out.println(m));
@@ -111,16 +116,38 @@ public class Main {
             errorLogger.error("Il mezzo non è stato in manutenzione in questa data");
         }
 
-        manutenzioniDAO.selectAllMezzi().stream().forEach(mezzi -> System.out.println(mezzi));
-        manutenzioniDAO.getMezziInManutenzione().stream().forEach(mezzi -> System.out.println(mezzi));
-        System.out.println("mezzi in servizio ----");
-        manutenzioniDAO.getMezziInServizio().stream().forEach(mezzi -> System.out.println(mezzi));
 
+        //test per avere lista dei mezzi in manutenzione
+        try {
+            List<Mezzi> mezziInManutenzione = manutenzioniDAO.getMezziInManutenzione();
+            if (mezziInManutenzione.isEmpty()){
+                throw new Exception();
+            }
+            mezziInManutenzione.stream().forEach(m -> System.out.println(m));
+            infoLogger.info("Lista mezzi in manutenzione acquisita");
+        } catch (Exception e) {
+            errorLogger.error(e.getMessage());
+        }
+
+        //test per avere lista dei mezzi in servizio
+        try {
+            List<Mezzi> mezziInServizio = manutenzioniDAO.getMezziInManutenzione();
+            if (mezziInServizio.isEmpty()){
+                throw new Exception();
+            }
+            mezziInServizio.stream().forEach(m -> System.out.println(m));
+            infoLogger.info("Lista mezzi in servizio acquisita");
+        } catch (Exception e) {
+            errorLogger.error(e.getMessage());
+        }
+
+        //testo metodo tempo effettivo per tratta
         System.out.println(tratteDAO.tempoEffettivoTratta(tratta1));
 
 
     }
 
+    //metodo per l'emissione di un biglietto
     public static void emissioneBiglietto(PuntiDiEmissione puntiDiEmissione){
         Biglietti biglietto = new Biglietti();
         biglietto.setValido(true);
@@ -128,7 +155,20 @@ public class Main {
         biglietto.setDataEmissione(LocalDate.now());
         biglietto.setPrezzo(3);
     }
-    
+
+    //metodo per vidimare il biglietto
+    public static void vidimaBiglietto (Mezzi mezzo, Biglietti biglietto){
+        biglietto.setValido(false);
+        biglietto.setDataVidimazione(LocalDate.now());
+        biglietto.setMezzo(mezzo);
+        List <Biglietti> lista = mezzo.getBiglietti();
+        lista.add(biglietto);
+        mezzo.setBiglietti(lista);
+        saveTickets(biglietto);
+        saveMezzo(mezzo);
+    }
+
+    //metodo che emette un abbonamento controllando che l'utente abbia una tessera valida
     public static void emissioneAbbonamento(Utente utente, PuntiDiEmissione puntiDiEmissione, Periodicita periodo) {
         utenteDao.refresh(utente);
         System.out.println(tesseraDao.checkValidationTessera(utente));
@@ -153,6 +193,7 @@ public class Main {
             errorLogger.error("Abbonamento non emesso : Errore");
         }
     }
+    //metodo per aggiungere o aggiornare una manutenzione
     public static void saveManutenzioni(Manutenzioni man, Mezzi m){
             man.setMezzo(m);
             manutenzioniDAO.setInManutenzione(m);
@@ -165,6 +206,7 @@ public class Main {
             }
     }
 
+    //metodo per aggiungere o aggiornare una tratta e per di conseguenza settare un mezzo
     public static void saveTratta(Tratte tratta, Mezzi m){
        tratta.setMezzo(m);
        try {
@@ -175,6 +217,7 @@ public class Main {
         errorLogger.error("Aggiunta della tratta non riuscita");
        }
     }
+    //metodo per aggiungere o aggiornare un punto di emissione
     public static void savePunto (PuntiDiEmissione punto){
         try {
             puntiDiEmissioneDAO.aggiungi(punto);
@@ -183,6 +226,7 @@ public class Main {
             errorLogger.error("Punto di emissione" + punto + " non aggiunto : ERRORE");
         }
     }
+    //metodo per aggiungere o aggiornare un mezzo
     public static void saveMezzo (Mezzi m){
         try {
             mezziDAO.aggiungi(m);
@@ -193,6 +237,7 @@ public class Main {
         }
     }
 
+    //metodo per aggiungere o aggiornare una tessera
     public static void saveTessera (Tessera tessera){
         try {
         tesseraDao.aggiungi(tessera);
@@ -201,6 +246,7 @@ public class Main {
         errorLogger.error("Tessera non aggiunta: ERRORE");
         }
     }
+    //metodo per aggiungere o aggiornare un ticket
     public static void saveTickets (Tickets tickets){
         try {
             ticketsDao.aggiungi(tickets);
@@ -210,6 +256,7 @@ public class Main {
         }
     }
 
+    //metodo per aggiungere o aggiornare un utente
     public static void saveUtente (Utente utente) {
         try{
             utenteDao.aggiungi(utente);
@@ -219,17 +266,8 @@ public class Main {
         }
     }
 
-    public static void vidimaBiglietto (Mezzi mezzo, Biglietti biglietto){
-        biglietto.setValido(false);
-        biglietto.setDataVidimazione(LocalDate.now());
-        biglietto.setMezzo(mezzo);
-        List <Biglietti> lista = mezzo.getBiglietti();
-        lista.add(biglietto);
-        mezzo.setBiglietti(lista);
-        saveTickets(biglietto);
-        saveMezzo(mezzo);
-    }
 
+    //metodo per cambiare lo status del distributore nel suo contrario
     public static void toggleStatusDistributore (DistributoriAutomatici distributore){
         try {
             distributore.setIn_servizio(!distributore.isIn_servizio());
@@ -240,6 +278,7 @@ public class Main {
         }
     }
 
+    //metodo per rinnovare la tessera con il controllo della scadenza
     public static void rinnovaTessera (Tessera tessera){
             if (tessera.getDataScadenza().isBefore(LocalDate.now())){
                 tessera.setDataScadenza();

@@ -95,6 +95,12 @@ public class Main {
         } catch (Exception e){
             errorLogger.error(e.getMessage());
         }
+
+        try {
+            System.out.println(nTrattaPerMezzo(16));
+        } catch (Exception e){
+            errorLogger.error(e.getMessage());
+        }
     }
 
     public static void emissioneBiglietto(PuntiDiEmissione puntiDiEmissione){
@@ -226,7 +232,12 @@ public class Main {
             }
     }
 
-
+    public static long nTrattaPerMezzo (int id){
+        if (mezziDAO.getById(id).equals(null)){
+            errorLogger.error("Mezzo non trovato");
+        }
+        return tratteDAO.trattaPerMezzo(id);
+    }
 
 }
 

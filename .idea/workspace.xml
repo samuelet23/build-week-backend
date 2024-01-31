@@ -9,6 +9,9 @@
       <change beforePath="$PROJECT_DIR$/logs/main_error.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/main_error.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/main_info.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/main_info.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/MezziDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/MezziDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/TratteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/TratteDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/UtenteDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/UtenteDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/entities/Tratte.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Tratte.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

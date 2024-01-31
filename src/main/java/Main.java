@@ -94,8 +94,7 @@ public class Main {
         man1.setData_inizio(LocalDate.now());
         man1.setData_fine(man1.getData_inizio().plusWeeks(2));
 	    saveManutenzioni(man1, m1);
-
-        System.out.println(tesseraDao.checkValidationTessera(utente));
+        toggleStatusDistributore((DistributoriAutomatici) d);
 
     }
 
@@ -106,11 +105,23 @@ public class Main {
         biglietto.setDataEmissione(LocalDate.now());
         biglietto.setPrezzo(3);
     }
-    public void AcquistaAbbonamento(Utente utente){
-        if (utente.getNumeroTessera() != null && tesseraDao.checkValidationTessera(utente)) {
-
-
+    
+    public void AcquistaAbbonamento(Utente utente, PuntiDiEmissione puntiDiEmissione){
+        if (utente.getNumeroTessera() != null && tesseraDao.checkValidationTessera(utente) ) {
+            Abbonamenti abbonamento = new Abbonamenti();
+            abbonamento.setTessera(utente.getNumeroTessera());
+            abbonamento.setValido(true);
+            abbonamento.setPrezzo(50);
+            abbonamento.setDataEmissione(LocalDate.now());
+            abbonamento.setPuntiDiEmissione(puntiDiEmissione);
+            if (abbonamento.getPeriodicita() == Periodicita.SETTIMANALE) {
+                abbonamento.setScadenza(LocalDate.now().plusWeeks(1));
+            }else if (abbonamento.getPeriodicita() == Periodicita.MENSILE){
+                abbonamento.setScadenza(LocalDate.now().plusMonths(1));
+            }
+            errorLogger.info("Abbonamento emesso correttamente");
         }
+            errorLogger.error("Abbonamento non emmesso:ERRORE");
 
 
     }
@@ -161,7 +172,6 @@ public class Main {
         infoLogger.info("Tessera aggiunta");
         } catch (Exception e){
         errorLogger.error("Tessera non aggiunta: ERRORE");
-        e.printStackTrace();
         }
     }
     public static void saveTickets (Tickets tickets){
@@ -179,7 +189,6 @@ public class Main {
             infoLogger.info("Utente aggiunto correttamente");
         }catch (Exception e){
             errorLogger.error("ERRORE: Utente non aggiunto");
-            e.printStackTrace();
         }
     }
 

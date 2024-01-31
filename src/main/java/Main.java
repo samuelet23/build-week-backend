@@ -146,13 +146,37 @@ public class Main {
             errorLogger.error(e.getMessage());
         }
 
+        //test per avere lista dei biglietti vidimati per mezzo
+        try {
+            List<Biglietti> bigliettiPerMezzo = ticketsDao.bigliettiVidimatiPerMezzo(m1);
+            if (bigliettiPerMezzo.isEmpty()){
+                throw new Exception();
+            }
+            bigliettiPerMezzo.stream().forEach(m -> System.out.println(m));
+            infoLogger.info("Lista biglietti vidimati per mezzo  acquisita");
+        } catch (Exception e) {
+            errorLogger.error(e.getMessage());
+        }
+
+        System.out.println("-----------------------------------");
+
+        //test per avere lista dei biglietti vidimati per data
+        try {
+            List<Biglietti> bigliettiPerData = ticketsDao.bigliettiVidimatiPerTempo(LocalDate.now(), LocalDate.now().plusDays(1));
+            if (bigliettiPerData.isEmpty()){
+                throw new Exception();
+            }
+            bigliettiPerData.stream().forEach(m -> System.out.println(m));
+            infoLogger.info("Lista biglietti vidimati per data  acquisita");
+        } catch (Exception e) {
+            errorLogger.error(e.getMessage());
+        }
+
         //testo metodo tempo effettivo per tratta
         System.out.println(tratteDAO.tempoEffettivoTratta(tratta1));
 
 
-        ticketsDao.bigliettiVidimatiPerMezzo(m1).stream().forEach(biglietti -> System.out.println(biglietti));
-        System.out.println("-----------------------------------");
-        ticketsDao.bigliettiVidimatiPerTempo(LocalDate.now(), LocalDate.now().plusDays(1)).stream().forEach(biglietti -> System.out.println(biglietti));
+
 
 
 

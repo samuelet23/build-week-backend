@@ -59,8 +59,8 @@ public class ManutenzioniDAO {
         tracciaInManutenzione.setParameter("mezzo", mezzo)
                 .setParameter("dataInizio", dataInizio)
                 .setParameter("dataFine", dataFine);
-
-        return (List<Manutenzioni>) tracciaInManutenzione.getResultList();
+        et.commit();
+        return tracciaInManutenzione.getResultList();
     }
     public Manutenzioni getById(int id){
         return em.find(Manutenzioni.class, id);
@@ -78,18 +78,15 @@ public class ManutenzioniDAO {
         EntityTransaction et = em.getTransaction();
         LocalDate oggi = LocalDate.now();
         et.begin();
-        Query query = em.createQuery("tracciaMezziInManutenzione");
+        Query query = em.createNamedQuery("tracciaMezziInManutenzione");
         query.setParameter("oggi", oggi);
        List<Mezzi> lista = (List<Mezzi>) query.getResultList();
        et.commit();
        return lista;
     }
     public List<Mezzi> getMezziInServizio(){
-        EntityTransaction et = em.getTransaction();
-        et.begin();
         List<Mezzi> allMezzi = selectAllMezzi();
         List<Mezzi> mezziInManutenzione = getMezziInManutenzione();
-        et.commit();
         return allMezzi
                 .stream()
                 .filter(m -> !mezziInManutenzione.contains(m))

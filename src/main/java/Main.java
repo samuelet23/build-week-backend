@@ -140,6 +140,7 @@ public class Main {
             manutenzioniDAO.setInManutenzione(m);
             try {
                 manutenzioniDAO.aggiungi(man);
+                manutenzioniDAO.
                 infoLogger.info("Aggiunta manutenzione riuscita con successo!");
             } catch (Exception e){
                 e.getMessage();

@@ -80,9 +80,10 @@ public class ManutenzioniDAO {
         et.begin();
         Query query = em.createNamedQuery("tracciaMezziInManutenzione");
         query.setParameter("oggi", oggi);
-       List<Mezzi> lista = (List<Mezzi>) query.getResultList();
+       List<Manutenzioni> manutenzioni =  query.getResultList();
        et.commit();
-       return lista;
+       return manutenzioni.stream()
+               .map(el-> el.getMezzo()).collect(Collectors.toList());
     }
     public List<Mezzi> getMezziInServizio(){
         List<Mezzi> allMezzi = selectAllMezzi();

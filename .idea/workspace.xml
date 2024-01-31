@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="647afd16-3174-4bdc-977b-660c6f6ce546" name="Changes" comment="">
-      <changelist_data name="Maudit00" email="davide9311@gmail.com" date="1706714439000" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/main_error.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/main_error.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/main_info.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/main_info.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/ManutenzioniDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/ManutenzioniDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,7 +48,7 @@
     "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Cherry-picking in davide-test",
+    "git-widget-placeholder": "davide-test",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/home/brucaliffo/github/build-week-backend/src/main/java",
     "onboarding.tips.debug.path": "C:/Users/Samuele Toscano/IdeaProjects/build-week-backend/src/main/java/fs0523-Samuele-Toscano-backend/Main.java",
@@ -70,6 +73,15 @@
       <option name="presentableId" value="Default" />
       <updated>1706519401068</updated>
     </task>
+    <task id="LOCAL-00001" summary="fixing lista manutenzione">
+      <option name="closed" value="true" />
+      <created>1706715376976</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1706715376976</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

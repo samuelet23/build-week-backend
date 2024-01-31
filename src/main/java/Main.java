@@ -74,11 +74,11 @@ public class Main {
         tratta1.setCapolinea("Vasto");
         tratta1.setTempo_medio(Time.valueOf("03:03:05"));
         saveTratta(tratta1,m1);
-
-        Manutenzioni man1 = new Manutenzioni();
-        man1.setData_inizio(LocalDate.now());
-        man1.setData_fine(man1.getData_inizio().plusWeeks(2));
-	    saveManutenzioni(man1, m1);
+//
+//        Manutenzioni man1 = new Manutenzioni();
+//        man1.setData_inizio(LocalDate.now());
+//        man1.setData_fine(man1.getData_inizio().plusWeeks(2));
+//	    saveManutenzioni(man1, m1);
         toggleStatusDistributore((DistributoriAutomatici) d);
 
         try {
@@ -112,6 +112,7 @@ public class Main {
 
         manutenzioniDAO.selectAllMezzi().stream().forEach(mezzi -> System.out.println(mezzi));
         manutenzioniDAO.getMezziInManutenzione().stream().forEach(mezzi -> System.out.println(mezzi));
+        System.out.println("mezzi in servizio ----");
         manutenzioniDAO.getMezziInServizio().stream().forEach(mezzi -> System.out.println(mezzi));
 
 

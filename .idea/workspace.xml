@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="647afd16-3174-4bdc-977b-660c6f6ce546" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/main_error.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/main_error.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/main_info.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/main_info.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <changelist_data name="Maudit00" email="davide9311@gmail.com" date="1706714439000" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/ManutenzioniDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/ManutenzioniDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Mezzi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Mezzi.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,18 +40,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;davide-test&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/brucaliffo/github/build-week-backend/src/main/java&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/Samuele Toscano/IdeaProjects/build-week-backend/src/main/java/fs0523-Samuele-Toscano-backend/Main.java&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Cherry-picking in davide-test",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/brucaliffo/github/build-week-backend/src/main/java",
+    "onboarding.tips.debug.path": "C:/Users/Samuele Toscano/IdeaProjects/build-week-backend/src/main/java/fs0523-Samuele-Toscano-backend/Main.java",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java" />
@@ -99,6 +94,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fixing lista manutenzione" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixing lista manutenzione" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

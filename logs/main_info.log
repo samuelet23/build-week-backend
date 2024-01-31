@@ -906,3 +906,17 @@
 2024-01-31 16:15:41,257 INFO main main_info - Tessera aggiunta
 2024-01-31 16:15:41,257 INFO main main_info - Tessera rinnovata!
 2024-01-31 16:15:41,289 INFO main main_info - Il mezzo è stato in manutenzione in questa data
+2024-01-31 16:39:22,987 INFO main main_info - Aggiunta del mezzo riuscita con successo!
+2024-01-31 16:39:22,998 INFO main main_info - Punto di emissioneDistributoriAutomatici{in_servizio=true}aggiunto
+2024-01-31 16:39:23,007 INFO main main_info - Utente aggiunto correttamente
+2024-01-31 16:39:23,015 INFO main main_info - Tessera aggiunta
+2024-01-31 16:39:23,022 INFO main main_info - Tickets aggiunto
+2024-01-31 16:39:23,036 INFO main main_info - Tickets aggiunto
+2024-01-31 16:39:23,041 INFO main main_info - Aggiunta del mezzo riuscita con successo!
+2024-01-31 16:39:23,048 INFO main main_info - Aggiunta tratta riuscita con successo!
+2024-01-31 16:39:23,104 INFO main main_info - Aggiunta manutenzione riuscita con successo!
+2024-01-31 16:39:23,108 INFO main main_info - Distributore aggiornato!
+2024-01-31 16:39:23,134 INFO main main_info - Lancio emissioneAbbonamento effettuato
+2024-01-31 16:39:23,138 INFO main main_info - Tessera aggiunta
+2024-01-31 16:39:23,139 INFO main main_info - Tessera rinnovata!
+2024-01-31 16:39:23,168 INFO main main_info - Il mezzo è stato in manutenzione in questa data

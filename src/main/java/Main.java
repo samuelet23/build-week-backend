@@ -96,6 +96,14 @@ public class Main {
 	    saveManutenzioni(man1, m1);
         toggleStatusDistributore((DistributoriAutomatici) d);
 
+
+        try{
+            manutenzioniDAO.tracciaMezzoInManutenzione(m1, LocalDate.now(), LocalDate.now().plusWeeks(1)).stream()
+                    .forEach(m -> System.out.println(m));
+            infoLogger.info("Il mezzo è stato in manutenzione in questa data");
+        }catch (Exception e){
+            errorLogger.error("Il mezzo non è stato in manutenzione in questa data");
+        }
     }
 
     public static void emissioneBiglietto(PuntiDiEmissione puntiDiEmissione){

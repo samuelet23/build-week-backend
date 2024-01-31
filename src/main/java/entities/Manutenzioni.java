@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table (name = "manutenzioni")
-
+@NamedQuery(name = "tracciaPeriodoManutenzione", query = "SELECT mt FROM Manutenzioni mt WHERE mt.mezzo = :mezzo AND (mt.data_inizio BETWEEN :dataInizio AND :dataFine OR mt.data_fine BETWEEN :dataInizio AND :dataFine)")
 public class Manutenzioni {
 @Id
 @GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "id_manutenzioni")

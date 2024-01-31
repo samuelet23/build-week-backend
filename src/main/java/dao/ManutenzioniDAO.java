@@ -4,6 +4,10 @@ import entities.Manutenzioni;
 import entities.Mezzi;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Locale;
+
 public class ManutenzioniDAO {
     private EntityManagerFactory emf;
     private EntityManager em;
@@ -46,6 +50,19 @@ public class ManutenzioniDAO {
         setOffManutenzione.executeUpdate();
         et.commit();
     }
+
+    public List<Manutenzioni> tracciaMezzoInManutenzione(Mezzi mezzo, LocalDate dataInizio, LocalDate dataFine){
+        EntityTransaction et = em.getTransaction();
+        et.begin();
+        Query tracciaInManutenzione = em.createNamedQuery("tracciaPeriodoManutenzione");
+        tracciaInManutenzione.setParameter("mezzo", mezzo)
+                .setParameter("dataInizio", dataInizio)
+                .setParameter("dataFine", dataFine);
+
+        return (List<Manutenzioni>) tracciaInManutenzione.getResultList();
+    }
+
+
 
     public Manutenzioni getById(int id){
         return em.find(Manutenzioni.class, id);

@@ -41,7 +41,7 @@ public class TesseraDao {
         LocalDate oggi = LocalDate.now();
         Query check = em.createNamedQuery("validationTessera");
         check.setParameter("oggi", oggi);
-        check.setParameter("numeroTessera", utente.getNumeroTessera().getNumeroTessera());
+        check.setParameter("numeroTessera", utente.getNumeroTessera());
 
         et.commit();
         if (check.getSingleResult().equals(0)){

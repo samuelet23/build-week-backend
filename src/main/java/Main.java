@@ -97,7 +97,7 @@ public class Main {
         toggleStatusDistributore((DistributoriAutomatici) d);
 
         try {
-            emissioneAbbonamento(25, d, Periodicita.MENSILE);
+            emissioneAbbonamento(utente, d, Periodicita.MENSILE);
             infoLogger.info("Lancio emissioneAbbonamento effettuato");
 
         } catch (Exception e){
@@ -115,8 +115,7 @@ public class Main {
         biglietto.setPrezzo(3);
     }
     
-    public static void emissioneAbbonamento(int id_utente, PuntiDiEmissione puntiDiEmissione, Periodicita periodo) {
-            Utente utente = utenteDao.getById(id_utente);
+    public static void emissioneAbbonamento(Utente utente, PuntiDiEmissione puntiDiEmissione, Periodicita periodo) {
         if ( tesseraDao.checkValidationTessera(utente)) {
             Abbonamenti abbonamento = new Abbonamenti();
             abbonamento.setTessera(utente.getNumeroTessera());

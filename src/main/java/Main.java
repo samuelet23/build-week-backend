@@ -1,6 +1,3 @@
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.Query;
-import ch.qos.logback.core.encoder.EchoEncoder;
 import dao.*;
 import entities.type.*;
 import entities.sottoclassi.*;
@@ -10,7 +7,6 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
-import java.util.Set;
 
 
 public class Main {
@@ -26,6 +22,7 @@ public class Main {
     public static void main(String[] args) {
 
 
+        //creazione mezzo
         Mezzi m1 = new Mezzi();
         m1.setTipo(TipoMezzo.TRAM);
         m1.setIn_manutenzione(false);
@@ -33,40 +30,48 @@ public class Main {
 
 
 
+        //creazione punto di emissione
         PuntiDiEmissione d = new DistributoriAutomatici();
         ((DistributoriAutomatici)d).setIn_servizio(true);
         d.setCitta("Milano");
         d.setNome("BuyHere");
         savePunto(d);
 
+        //creazione utente
         Utente utente = new Utente();
         utente.setNome("Mario");
         utente.setCognome("Rossi");
         utente.setDataNascita(LocalDate.of(2000,Month.APRIL, 15 ));
 
+        //salvataggio utente
         saveUtente(utente);
 
+        //emissione biglietto
         emissioneBiglietto(d);
 
 
+        //creazione Tessera
         Tessera tessera = new Tessera();
         tessera.setDataAcquisto(LocalDate.of(2022,Month.DECEMBER, 12));
         tessera.setUtente(utente);
 
+        //salvataggio tessera
         saveTessera(tessera);
 
+        //creazione biglietto
         Biglietti b = new Biglietti();
-
         b.setPrezzo(20);
         b.setValido(true);
         b.setDataEmissione(LocalDate.of(2024, Month.FEBRUARY, 2));
         b.setPuntiDiEmissione(d);
 
-
+        //salvataggio tickets
         saveTickets(b);
 
+        //vidimazione biglietto
         vidimaBiglietto(m1,b);
 
+        //creazione tratta
         Tratte tratta1 = new Tratte();
         tratta1.setData(LocalDate.now());
         tratta1.setNome("Pescara-Vasto");

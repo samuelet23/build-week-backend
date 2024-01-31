@@ -104,6 +104,12 @@ public class Main {
         }catch (Exception e){
             errorLogger.error("Il mezzo non è stato in manutenzione in questa data");
         }
+
+        manutenzioniDAO.selectAllMezzi().stream().forEach(mezzi -> System.out.println(mezzi));
+        manutenzioniDAO.getMezziInManutenzione().stream().forEach(mezzi -> System.out.println(mezzi));
+        manutenzioniDAO.getMezziInServizio().stream().forEach(mezzi -> System.out.println(mezzi));
+
+
     }
 
     public static void emissioneBiglietto(PuntiDiEmissione puntiDiEmissione){

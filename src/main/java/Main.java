@@ -1,3 +1,4 @@
+import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Query;
 import ch.qos.logback.core.encoder.EchoEncoder;
 import dao.*;
@@ -49,14 +50,12 @@ public class Main {
 
 
         Tessera tessera = new Tessera();
-        tessera.setNumeroTessera("202040");
-        tessera.setDataAcquisto(LocalDate.of(2024,Month.FEBRUARY, 12));
+        tessera.setDataAcquisto(LocalDate.of(2022,Month.DECEMBER, 12));
         tessera.setUtente(utente);
 
         saveTessera(tessera);
 
         Biglietti b = new Biglietti();
-        Abbonamenti a = new Abbonamenti();
 
         b.setPrezzo(20);
         b.setValido(true);
@@ -65,20 +64,6 @@ public class Main {
 
 
         saveTickets(b);
-
-        a.setPrezzo(100);
-        a.setPeriodicita(Periodicita.MENSILE);
-        a.setValido(true);
-        LocalDate scadenzaMensile = LocalDate.now().plusMonths(1);
-        a.setDataEmissione(LocalDate.now());
-        a.setScadenza(scadenzaMensile);
-        a.setPuntiDiEmissione(d);
-        tessera.setAbbonamenti(Set.of(a));
-        a.setTessera(tessera);
-
-        saveTickets(a);
-
-
 
         vidimaBiglietto(m1,b);
 
@@ -116,14 +101,22 @@ public class Main {
     }
     
     public static void emissioneAbbonamento(Utente utente, PuntiDiEmissione puntiDiEmissione, Periodicita periodo) {
+        utenteDao.refresh(utente);
         if ( tesseraDao.checkValidationTessera(utente)) {
             Abbonamenti abbonamento = new Abbonamenti();
             abbonamento.setTessera(utente.getNumeroTessera());
             abbonamento.setValido(true);
             abbonamento.setPrezzo(50);
-            abbonamento.setDataEmissione(LocalDate.now());
-            abbonamento.setPuntiDiEmissione(puntiDiEmissione);
             abbonamento.setPeriodicita(periodo);
+            abbonamento.setDataEmissione(LocalDate.now());
+            if (abbonamento.getPeriodicita() == Periodicita.MENSILE) {
+                abbonamento.setScadenza(abbonamento.getDataEmissione().plusMonths(1));
+            } else if (abbonamento.getPeriodicita() == Periodicita.SETTIMANALE){
+                abbonamento.setScadenza(abbonamento.getDataEmissione().plusWeeks(1));
+            } else {
+                errorLogger.error("l'abbonamento incredibilmente non ha la periodicità richiesta, ci scusiamo per il disagio!");
+            }
+            abbonamento.setPuntiDiEmissione(puntiDiEmissione);
             infoLogger.info("Abbonamento emesso correttamente");
             saveTickets(abbonamento);
         } else {

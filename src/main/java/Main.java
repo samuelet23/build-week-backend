@@ -1,3 +1,4 @@
+import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Query;
 import ch.qos.logback.core.encoder.EchoEncoder;
 import dao.*;
@@ -49,14 +50,12 @@ public class Main {
 
 
         Tessera tessera = new Tessera();
-        tessera.setNumeroTessera("202040");
-        tessera.setDataAcquisto(LocalDate.of(2024,Month.FEBRUARY, 12));
+        tessera.setDataAcquisto(LocalDate.of(2022,Month.DECEMBER, 12));
         tessera.setUtente(utente);
 
         saveTessera(tessera);
 
         Biglietti b = new Biglietti();
-        Abbonamenti a = new Abbonamenti();
 
         b.setPrezzo(20);
         b.setValido(true);
@@ -65,20 +64,6 @@ public class Main {
 
 
         saveTickets(b);
-
-        a.setPrezzo(100);
-        a.setPeriodicita(Periodicita.MENSILE);
-        a.setValido(true);
-        LocalDate scadenzaMensile = LocalDate.now().plusMonths(1);
-        a.setDataEmissione(LocalDate.now());
-        a.setScadenza(scadenzaMensile);
-        a.setPuntiDiEmissione(d);
-        tessera.setAbbonamenti(Set.of(a));
-        a.setTessera(tessera);
-
-        saveTickets(a);
-
-
 
         vidimaBiglietto(m1,b);
 
@@ -96,25 +81,20 @@ public class Main {
 	    saveManutenzioni(man1, m1);
         toggleStatusDistributore((DistributoriAutomatici) d);
 
-        try{
-            manutenzioniDAO.tracciaMezzoInManutenzione(m1, LocalDate.now(), LocalDate.now().plusWeeks(1)).stream()
-                    .forEach(m -> System.out.println(m));
-            infoLogger.info("Il mezzo è stato in manutenzione in questa data");
-        }catch (Exception e){
-            errorLogger.error("Il mezzo non è stato in manutenzione in questa data");
+        try {
+            emissioneAbbonamento(utente, d, Periodicita.MENSILE);
+            infoLogger.info("Lancio emissioneAbbonamento effettuato");
+
+        } catch (Exception e){
+            errorLogger.error("Errore nel lancio emissioneAbbonamento");
+            e.printStackTrace();
         }
 
-
-        manutenzioniDAO.getMezziInManutenzione().stream().forEach(mezzi -> System.out.println(mezzi));
-
-        manutenzioniDAO.getMezziInServizio().stream().forEach(mezzi -> System.out.println(mezzi));
-
-
-        ticketsDao.bigliettiVidimatiPerMezzo(m1).stream().forEach(biglietti -> System.out.println(biglietti));
-        ticketsDao.bigliettiVidimatiPerTempo(LocalDate.now(), LocalDate.now().plusDays(1)).stream().forEach(biglietti -> System.out.println(biglietti));
-
-
-
+        try {
+            rinnovaTessera(tessera);
+        } catch (Exception e){
+            errorLogger.error(e.getMessage());
+        }
     }
 
     public static void emissioneBiglietto(PuntiDiEmissione puntiDiEmissione){
@@ -124,26 +104,31 @@ public class Main {
         biglietto.setDataEmissione(LocalDate.now());
         biglietto.setPrezzo(3);
     }
-    public void AcquistaAbbonamento(Utente utente, PuntiDiEmissione puntiDiEmissione){
-        if (utente.getNumeroTessera() != null && tesseraDao.checkValidationTessera(utente) ) {
+    
+    public static void emissioneAbbonamento(Utente utente, PuntiDiEmissione puntiDiEmissione, Periodicita periodo) {
+        utenteDao.refresh(utente);
+        System.out.println(tesseraDao.checkValidationTessera(utente));
+        if ( tesseraDao.checkValidationTessera(utente)) {
             Abbonamenti abbonamento = new Abbonamenti();
             abbonamento.setTessera(utente.getNumeroTessera());
             abbonamento.setValido(true);
             abbonamento.setPrezzo(50);
+            abbonamento.setPeriodicita(periodo);
             abbonamento.setDataEmissione(LocalDate.now());
-            abbonamento.setPuntiDiEmissione(puntiDiEmissione);
-            if (abbonamento.getPeriodicita() == Periodicita.SETTIMANALE) {
-                abbonamento.setScadenza(LocalDate.now().plusWeeks(1));
-            }else if (abbonamento.getPeriodicita() == Periodicita.MENSILE){
-                abbonamento.setScadenza(LocalDate.now().plusMonths(1));
+            if (abbonamento.getPeriodicita() == Periodicita.MENSILE) {
+                abbonamento.setScadenza(abbonamento.getDataEmissione().plusMonths(1));
+            } else if (abbonamento.getPeriodicita() == Periodicita.SETTIMANALE){
+                abbonamento.setScadenza(abbonamento.getDataEmissione().plusWeeks(1));
+            } else {
+                errorLogger.error("l'abbonamento incredibilmente non ha la periodicità richiesta, ci scusiamo per il disagio!");
             }
-            errorLogger.info("Abbonamento emesso correttamente");
+            abbonamento.setPuntiDiEmissione(puntiDiEmissione);
+            infoLogger.info("Abbonamento emesso correttamente");
+            saveTickets(abbonamento);
+        } else {
+            errorLogger.error("Abbonamento non emesso : Errore");
         }
-            errorLogger.error("Abbonamento non emmesso:ERRORE");
-
-
     }
-
     public static void saveManutenzioni(Manutenzioni man, Mezzi m){
             man.setMezzo(m);
             manutenzioniDAO.setInManutenzione(m);
@@ -230,6 +215,19 @@ public class Main {
             errorLogger.error("Distributore non aggiornato: ERRORE");
         }
     }
+
+    public static void rinnovaTessera (Tessera tessera){
+            if (tessera.getDataScadenza().isBefore(LocalDate.now())){
+                tessera.setDataScadenza();
+                saveTessera(tessera);
+                infoLogger.info("Tessera rinnovata!");
+            } else {
+                errorLogger.error("Tessera non ancora scaduta");
+            }
+    }
+
+
+
 }
 
 

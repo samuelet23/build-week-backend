@@ -10,7 +10,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "tessera")
-@NamedQuery(name ="validationTessera", query = "SELECT COUNT(t)  FROM Tessera t WHERE t.dataScadenza > :oggi AND t.numeroTessera = :numeroTessera")
+@NamedQuery(name ="validationTessera", query = "SELECT t FROM Tessera t WHERE (t.id = :numeroTessera)")
+//@NamedQuery(name ="validationTesseraV2", query = "SELECT CASE WHEN t.dataScadenza > :oggi THEN true ELSE false END FROM Tessera t WHERE t.numeroTessera = :numeroTessera")
 
 public class Tessera {
     @Id
@@ -25,10 +26,6 @@ public class Tessera {
     @Column(name = "data_scadenza")
     private LocalDate dataScadenza;
 
-    @Column(name = "numero_tessera")
-    private String numeroTessera;
-
-    private boolean valida;
 
     @OneToMany(mappedBy = "tessera")
     private Set<Abbonamenti> abbonamenti = new HashSet<>();
@@ -36,12 +33,11 @@ public class Tessera {
 
     public Tessera(){}
 
-    public Tessera(int id, Utente utente, LocalDate dataAcquisto, LocalDate dataScadenza, String numeroTessera, Set<Abbonamenti> abbonamenti) {
+    public Tessera(int id, Utente utente, LocalDate dataAcquisto, LocalDate dataScadenza, Set<Abbonamenti> abbonamenti) {
         this.id = id;
         this.utente = utente;
         this.dataAcquisto = dataAcquisto;
         this.dataScadenza = dataScadenza;
-        this.numeroTessera = numeroTessera;
         this.abbonamenti = abbonamenti;
     }
 
@@ -82,18 +78,8 @@ public class Tessera {
         this.dataScadenza = dataScadenza;
     }
 
-    public boolean isValida() {
-        return valida;
-    }
 
 
-    public String getNumeroTessera() {
-        return numeroTessera;
-    }
-
-    public void setNumeroTessera(String numeroTessera) {
-        this.numeroTessera = numeroTessera;
-    }
 
     public Set<Abbonamenti> getAbbonamenti() {
         return abbonamenti;
@@ -109,8 +95,6 @@ public class Tessera {
                 "id=" + id +
                 ", dataAcquisto=" + dataAcquisto +
                 ", dataScadenza=" + dataScadenza +
-                ", numeroTessera='" + numeroTessera + '\'' +
-                ", abbonamenti=" + abbonamenti +
                 '}';
     }
 

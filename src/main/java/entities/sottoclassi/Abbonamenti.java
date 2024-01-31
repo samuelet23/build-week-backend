@@ -16,6 +16,7 @@ public class Abbonamenti extends Tickets {
     @ManyToOne
     @JoinColumn(name = "tessera_fk")
     private Tessera tessera;
+    @Enumerated (EnumType.STRING)
     private Periodicita periodicita;
     private LocalDate scadenza;
 

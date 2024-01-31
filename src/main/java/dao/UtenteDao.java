@@ -36,5 +36,12 @@ public class UtenteDao {
     public Utente getById(int id){
         return em.find(Utente.class, id);
     }
+
+    public Utente refresh (Utente utente){
+        System.out.println(utente);
+        em.refresh(utente);
+        System.out.println(utente);
+        return utente;
+    }
 }
 

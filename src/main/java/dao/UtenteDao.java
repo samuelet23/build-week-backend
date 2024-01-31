@@ -38,9 +38,7 @@ public class UtenteDao {
     }
 
     public Utente refresh (Utente utente){
-        System.out.println(utente);
         em.refresh(utente);
-        System.out.println(utente);
         return utente;
     }
 }

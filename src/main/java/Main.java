@@ -73,6 +73,7 @@ public class Main {
         tratta1.setZona_partenza("Pescara");
         tratta1.setCapolinea("Vasto");
         tratta1.setTempo_medio(Time.valueOf("03:03:05"));
+        tratta1.setTempo_effettivo(Time.valueOf("02:02:05"));
         saveTratta(tratta1,m1);
 //
 //        Manutenzioni man1 = new Manutenzioni();
@@ -114,6 +115,8 @@ public class Main {
         manutenzioniDAO.getMezziInManutenzione().stream().forEach(mezzi -> System.out.println(mezzi));
         System.out.println("mezzi in servizio ----");
         manutenzioniDAO.getMezziInServizio().stream().forEach(mezzi -> System.out.println(mezzi));
+
+        System.out.println(tratteDAO.tempoEffettivoTratta(tratta1));
 
 
     }
@@ -247,6 +250,7 @@ public class Main {
             }
     }
 
+    //quante volte un mezzo fa una Tratta
     public static long nTrattaPerMezzo (int id){
         if (mezziDAO.getById(id).equals(null)){
             errorLogger.error("Mezzo non trovato");

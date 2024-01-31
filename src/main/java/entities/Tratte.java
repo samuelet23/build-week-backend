@@ -8,6 +8,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "tratte")
 @NamedQuery(name="trattaPerMezzo", query = "SELECT COUNT(t) FROM Tratte t WHERE t.mezzo.id = :id")
+@NamedQuery(name="tempoEffettivoTratta", query = "SELECT t.tempo_effettivo FROM Tratte t WHERE t.id = :id")
 public class Tratte {
     @Id
     @GeneratedValue ( strategy = GenerationType.SEQUENCE, generator = "id_tratte")

@@ -4,6 +4,7 @@ import entities.Mezzi;
 import entities.Tratte;
 import jakarta.persistence.*;
 
+import java.sql.Time;
 import java.util.List;
 
 public class TratteDAO {
@@ -44,5 +45,15 @@ public class TratteDAO {
         List<Tratte> lista = query.getResultList();
         et.commit();
         return lista.stream().count();
+    }
+
+    public Time tempoEffettivoTratta (Tratte tratta){
+        EntityTransaction et = em.getTransaction();
+        et.begin();
+        Query query = em.createNamedQuery("tempoEffettivoTratta");
+        query.setParameter("id", tratta.getId());
+        Time tempo = (Time) query.getSingleResult();
+        et.commit();
+        return tempo;
     }
 }

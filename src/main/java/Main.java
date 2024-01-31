@@ -145,6 +145,11 @@ public class Main {
         System.out.println(tratteDAO.tempoEffettivoTratta(tratta1));
 
 
+        ticketsDao.bigliettiVidimatiPerMezzo(m1).stream().forEach(biglietti -> System.out.println(biglietti));
+        ticketsDao.bigliettiVidimatiPerTempo(LocalDate.now(), LocalDate.now().plusDays(1)).stream().forEach(biglietti -> System.out.println(biglietti));
+
+
+
     }
 
     //metodo per l'emissione di un biglietto

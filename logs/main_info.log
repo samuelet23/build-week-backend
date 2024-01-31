@@ -704,3 +704,27 @@
 2024-01-31 11:48:50,590 INFO main main_info - Aggiunta manutenzione riuscita con successo!
 2024-01-31 11:48:50,595 INFO main main_info - Distributore aggiornato!
 2024-01-31 11:48:50,632 INFO main main_info - Lancio emissioneAbbonamento effettuato
+2024-01-31 12:48:06,167 INFO main main_info - Aggiunta del mezzo riuscita con successo!
+2024-01-31 12:48:06,174 INFO main main_info - Punto di emissioneDistributoriAutomatici{in_servizio=true}aggiunto
+2024-01-31 12:48:06,184 INFO main main_info - Utente aggiunto correttamente
+2024-01-31 12:48:06,192 INFO main main_info - Tessera aggiunta
+2024-01-31 12:48:06,198 INFO main main_info - Tickets aggiunto
+2024-01-31 12:48:06,209 INFO main main_info - Tickets aggiunto
+2024-01-31 12:48:06,214 INFO main main_info - Aggiunta del mezzo riuscita con successo!
+2024-01-31 12:48:06,221 INFO main main_info - Aggiunta tratta riuscita con successo!
+2024-01-31 12:48:06,273 INFO main main_info - Aggiunta manutenzione riuscita con successo!
+2024-01-31 12:48:06,279 INFO main main_info - Distributore aggiornato!
+2024-01-31 12:48:06,315 INFO main main_info - Lancio emissioneAbbonamento effettuato
+2024-01-31 12:49:19,434 INFO main main_info - Aggiunta del mezzo riuscita con successo!
+2024-01-31 12:49:19,443 INFO main main_info - Punto di emissioneDistributoriAutomatici{in_servizio=true}aggiunto
+2024-01-31 12:49:19,452 INFO main main_info - Utente aggiunto correttamente
+2024-01-31 12:49:19,459 INFO main main_info - Tessera aggiunta
+2024-01-31 12:49:19,464 INFO main main_info - Tickets aggiunto
+2024-01-31 12:49:19,477 INFO main main_info - Tickets aggiunto
+2024-01-31 12:49:19,481 INFO main main_info - Aggiunta del mezzo riuscita con successo!
+2024-01-31 12:49:19,487 INFO main main_info - Aggiunta tratta riuscita con successo!
+2024-01-31 12:49:19,540 INFO main main_info - Aggiunta manutenzione riuscita con successo!
+2024-01-31 12:49:19,543 INFO main main_info - Distributore aggiornato!
+2024-01-31 12:49:19,576 INFO main main_info - Lancio emissioneAbbonamento effettuato
+2024-01-31 12:49:19,580 INFO main main_info - Tessera aggiunta
+2024-01-31 12:49:19,581 INFO main main_info - Tessera rinnovata!

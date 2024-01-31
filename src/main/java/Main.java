@@ -90,6 +90,11 @@ public class Main {
             e.printStackTrace();
         }
 
+        try {
+            rinnovaTessera(tessera);
+        } catch (Exception e){
+            errorLogger.error(e.getMessage());
+        }
     }
 
     public static void emissioneBiglietto(PuntiDiEmissione puntiDiEmissione){
@@ -210,6 +215,19 @@ public class Main {
             errorLogger.error("Distributore non aggiornato: ERRORE");
         }
     }
+
+    public static void rinnovaTessera (Tessera tessera){
+            if (tessera.getDataScadenza().isBefore(LocalDate.now())){
+                tessera.setDataScadenza();
+                saveTessera(tessera);
+                infoLogger.info("Tessera rinnovata!");
+            } else {
+                errorLogger.error("Tessera non ancora scaduta");
+            }
+    }
+
+
+
 }
 
 

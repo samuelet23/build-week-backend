@@ -51,7 +51,6 @@ public class Biglietti extends Tickets {
     public String toString() {
         return "Biglietti{" +
                 "dataVidimazione=" + dataVidimazione +
-                ", mezzo=" + mezzo +
                 ", puntiDiEmissione=" + puntiDiEmissione +
                 ", dataEmissione=" + dataEmissione +
                 ", valido=" + valido +

@@ -101,6 +101,20 @@ public class Main {
         } catch (Exception e){
             errorLogger.error(e.getMessage());
         }
+
+        try{
+            manutenzioniDAO.tracciaMezzoInManutenzione(m1, LocalDate.now(), LocalDate.now().plusWeeks(1)).stream()
+                    .forEach(m -> System.out.println(m));
+            infoLogger.info("Il mezzo è stato in manutenzione in questa data");
+        }catch (Exception e){
+            errorLogger.error("Il mezzo non è stato in manutenzione in questa data");
+        }
+
+        manutenzioniDAO.selectAllMezzi().stream().forEach(mezzi -> System.out.println(mezzi));
+        manutenzioniDAO.getMezziInManutenzione().stream().forEach(mezzi -> System.out.println(mezzi));
+        manutenzioniDAO.getMezziInServizio().stream().forEach(mezzi -> System.out.println(mezzi));
+
+
     }
 
     public static void emissioneBiglietto(PuntiDiEmissione puntiDiEmissione){

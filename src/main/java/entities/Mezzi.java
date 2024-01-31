@@ -111,9 +111,7 @@ public class Mezzi {
                 ", tipo=" + tipo +
                 ", capienza=" + capienza +
                 ", in_manutenzione=" + in_manutenzione +
-                ", biglietti=" + biglietti +
-                ", lista_tratte=" + lista_tratte +
-                ", lista_manutenzioni=" + lista_manutenzioni +
+//                ", biglietti=" + biglietti +
                 '}';
     }
 }

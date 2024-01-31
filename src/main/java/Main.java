@@ -3,8 +3,8 @@ import jakarta.persistence.Query;
 import ch.qos.logback.core.encoder.EchoEncoder;
 import dao.*;
 import entities.type.*;
-import entities.*;
 import entities.sottoclassi.*;
+import entities.*;
 import org.slf4j.*;
 import java.sql.Time;
 import java.time.LocalDate;
@@ -110,9 +110,9 @@ public class Main {
             errorLogger.error("Il mezzo non è stato in manutenzione in questa data");
         }
 
-        manutenzioniDAO.selectAllMezzi().stream().forEach(mezzi -> System.out.println(mezzi));
+//        manutenzioniDAO.selectAllMezzi().stream().forEach(mezzi -> System.out.println(mezzi));
         manutenzioniDAO.getMezziInManutenzione().stream().forEach(mezzi -> System.out.println(mezzi));
-        manutenzioniDAO.getMezziInServizio().stream().forEach(mezzi -> System.out.println(mezzi));
+//        manutenzioniDAO.getMezziInServizio().stream().forEach(mezzi -> System.out.println(mezzi));
 
 
     }
@@ -154,7 +154,6 @@ public class Main {
             manutenzioniDAO.setInManutenzione(m);
             try {
                 manutenzioniDAO.aggiungi(man);
-                manutenzioniDAO.
                 infoLogger.info("Aggiunta manutenzione riuscita con successo!");
             } catch (Exception e){
                 e.getMessage();

@@ -11,6 +11,7 @@ import java.util.Set;
 @Entity
 @Table(name = "tessera")
 @NamedQuery(name ="validationTessera", query = "SELECT COUNT(t)  FROM Tessera t WHERE t.dataScadenza > :oggi AND t.numeroTessera = :numeroTessera")
+@NamedQuery(name ="validationTesseraV2", query = "SELECT CASE WHEN t.dataScadenza > :oggi THEN true ELSE false END FROM Tessera t WHERE t.numeroTessera = :numeroTessera")
 
 public class Tessera {
     @Id
@@ -28,7 +29,6 @@ public class Tessera {
     @Column(name = "numero_tessera")
     private String numeroTessera;
 
-    private boolean valida;
 
     @OneToMany(mappedBy = "tessera")
     private Set<Abbonamenti> abbonamenti = new HashSet<>();
@@ -82,10 +82,6 @@ public class Tessera {
         this.dataScadenza = dataScadenza;
     }
 
-    public boolean isValida() {
-        return valida;
-    }
-
 
     public String getNumeroTessera() {
         return numeroTessera;
@@ -110,7 +106,6 @@ public class Tessera {
                 ", dataAcquisto=" + dataAcquisto +
                 ", dataScadenza=" + dataScadenza +
                 ", numeroTessera='" + numeroTessera + '\'' +
-                ", abbonamenti=" + abbonamenti +
                 '}';
     }
 

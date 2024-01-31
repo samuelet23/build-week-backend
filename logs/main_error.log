@@ -25,3 +25,7 @@
 2024-01-30 05:31:20 ERROR main main_error - Tessera non aggiunta: ERRORE
 2024-01-30 05:31:20 ERROR main main_error - Tickets non aggiunto: ERRORE
 2024-01-30 05:31:20 ERROR main main_error - Tickets non aggiunto: ERRORE
+2024-01-31 09:27:53 ERROR main main_error - Abbonamento non emesso : Errore
+2024-01-31 09:30:07 ERROR main main_error - Abbonamento non emesso : Errore
+2024-01-31 09:38:15 ERROR main main_error - Abbonamento non emesso : Errore
+2024-01-31 09:50:25 ERROR main main_error - Errore nel lancio emissioneAbbonamento

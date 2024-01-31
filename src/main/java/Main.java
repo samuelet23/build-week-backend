@@ -96,6 +96,15 @@ public class Main {
 	    saveManutenzioni(man1, m1);
         toggleStatusDistributore((DistributoriAutomatici) d);
 
+        try {
+            emissioneAbbonamento(25, d, Periodicita.MENSILE);
+            infoLogger.info("Lancio emissioneAbbonamento effettuato");
+
+        } catch (Exception e){
+            errorLogger.error("Errore nel lancio emissioneAbbonamento");
+            e.printStackTrace();
+        }
+
     }
 
     public static void emissioneBiglietto(PuntiDiEmissione puntiDiEmissione){
@@ -106,26 +115,22 @@ public class Main {
         biglietto.setPrezzo(3);
     }
     
-    public void AcquistaAbbonamento(Utente utente, PuntiDiEmissione puntiDiEmissione){
-        if (utente.getNumeroTessera() != null && tesseraDao.checkValidationTessera(utente) ) {
+    public static void emissioneAbbonamento(int id_utente, PuntiDiEmissione puntiDiEmissione, Periodicita periodo) {
+            Utente utente = utenteDao.getById(id_utente);
+        if ( tesseraDao.checkValidationTessera(utente)) {
             Abbonamenti abbonamento = new Abbonamenti();
             abbonamento.setTessera(utente.getNumeroTessera());
             abbonamento.setValido(true);
             abbonamento.setPrezzo(50);
             abbonamento.setDataEmissione(LocalDate.now());
             abbonamento.setPuntiDiEmissione(puntiDiEmissione);
-            if (abbonamento.getPeriodicita() == Periodicita.SETTIMANALE) {
-                abbonamento.setScadenza(LocalDate.now().plusWeeks(1));
-            }else if (abbonamento.getPeriodicita() == Periodicita.MENSILE){
-                abbonamento.setScadenza(LocalDate.now().plusMonths(1));
-            }
-            errorLogger.info("Abbonamento emesso correttamente");
+            abbonamento.setPeriodicita(periodo);
+            infoLogger.info("Abbonamento emesso correttamente");
+            saveTickets(abbonamento);
+        } else {
+            errorLogger.error("Abbonamento non emesso : Errore");
         }
-            errorLogger.error("Abbonamento non emmesso:ERRORE");
-
-
     }
-
     public static void saveManutenzioni(Manutenzioni man, Mezzi m){
             man.setMezzo(m);
             manutenzioniDAO.setInManutenzione(m);

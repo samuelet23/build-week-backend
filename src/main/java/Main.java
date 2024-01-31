@@ -96,7 +96,6 @@ public class Main {
 	    saveManutenzioni(man1, m1);
         toggleStatusDistributore((DistributoriAutomatici) d);
 
-
         try{
             manutenzioniDAO.tracciaMezzoInManutenzione(m1, LocalDate.now(), LocalDate.now().plusWeeks(1)).stream()
                     .forEach(m -> System.out.println(m));
@@ -105,9 +104,15 @@ public class Main {
             errorLogger.error("Il mezzo non è stato in manutenzione in questa data");
         }
 
-//        manutenzioniDAO.selectAllMezzi().stream().forEach(mezzi -> System.out.println(mezzi));
+
         manutenzioniDAO.getMezziInManutenzione().stream().forEach(mezzi -> System.out.println(mezzi));
-//        manutenzioniDAO.getMezziInServizio().stream().forEach(mezzi -> System.out.println(mezzi));
+
+        manutenzioniDAO.getMezziInServizio().stream().forEach(mezzi -> System.out.println(mezzi));
+
+
+        ticketsDao.bigliettiVidimatiPerMezzo(m1).stream().forEach(biglietti -> System.out.println(biglietti));
+        ticketsDao.bigliettiVidimatiPerTempo(LocalDate.now(), LocalDate.now().plusDays(1)).stream().forEach(biglietti -> System.out.println(biglietti));
+
 
 
     }

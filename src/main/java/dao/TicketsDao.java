@@ -35,6 +35,12 @@ public class TicketsDao {
     public Tickets getById(int id){
         return em.find(Tickets.class, id);
     }
+
+
+
+
+
+
     public int bigliettiEmessiData(LocalDate dataInizio, LocalDate dataFine){
         EntityTransaction et = em.getTransaction();
         et.begin();

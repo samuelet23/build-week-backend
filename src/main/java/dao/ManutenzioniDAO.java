@@ -50,4 +50,7 @@ public class ManutenzioniDAO {
     public Manutenzioni getById(int id){
         return em.find(Manutenzioni.class, id);
     }
+    public Manutenzioni getAll (){
+        return 
+    }
 }

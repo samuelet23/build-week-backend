@@ -31,6 +31,22 @@ public class Biglietti extends Tickets {
         this.mezzo = mezzo;
     }
 
+    public LocalDate getDataVidimazione() {
+        return dataVidimazione;
+    }
+
+    public void setDataVidimazione(LocalDate dataVidimazione) {
+        this.dataVidimazione = dataVidimazione;
+    }
+
+    public Mezzi getMezzo() {
+        return mezzo;
+    }
+
+    public void setMezzo(Mezzi mezzo) {
+        this.mezzo = mezzo;
+    }
+
     @Override
     public String toString() {
         return "Biglietti{" +

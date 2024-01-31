@@ -4,6 +4,8 @@ import entities.Mezzi;
 import entities.Tratte;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 public class TratteDAO {
 
     private EntityManagerFactory emf;
@@ -32,5 +34,15 @@ public class TratteDAO {
 
     public Tratte getById(int id){
         return em.find(Tratte.class, id);
+    }
+
+    public long trattaPerMezzo (int id){
+        EntityTransaction et = em.getTransaction();
+        et.begin();
+        Query query = em.createNamedQuery("trattaPerMezzo");
+        query.setParameter("id", id);
+        List<Tratte> lista = query.getResultList();
+        et.commit();
+        return lista.stream().count();
     }
 }

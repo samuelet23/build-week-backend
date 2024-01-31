@@ -1,12 +1,13 @@
 package dao;
 
-import entities.Manutenzioni;
 import entities.Tessera;
-import entities.Tickets;
 import entities.Utente;
 import jakarta.persistence.*;
 
+import java.security.Timestamp;
 import java.time.LocalDate;
+import java.util.Date;
+
 
 public class TesseraDao {
     private EntityManagerFactory emf;
@@ -37,12 +38,16 @@ public class TesseraDao {
         return em.find(Tessera.class, id);
     }
 
-    public void checkValidationTessera(Utente utente){
+    public boolean checkValidationTessera(Utente utente){
         EntityTransaction et = em.getTransaction();
         et.begin();
         LocalDate oggi = LocalDate.now();
         Query check = em.createNamedQuery("validationTessera");
-        check.setParameter("oggi", oggi);
-        check.setParameter("numeroTessera", utente.getNumeroTessera());
+        check.setParameter("numeroTessera", utente.getNumeroTessera().getId());
+        et.commit();
+        Tessera tessera = (Tessera) check.getSingleResult();
+        if (tessera.getDataScadenza().isBefore(oggi)){
+            return false;
+        } else return true;
     }
 }

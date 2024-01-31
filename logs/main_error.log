@@ -1,0 +1,51 @@
+2024-01-30 05:10:54 ERROR main main_error - ERRORE: Utente non aggiunto
+2024-01-30 05:10:54 ERROR main main_error - Tessera non aggiunta: ERRORE
+2024-01-30 05:10:54 ERROR main main_error - Tickets non aggiunto: ERRORE
+2024-01-30 05:10:54 ERROR main main_error - Tickets non aggiunto: ERRORE
+2024-01-30 05:14:26 ERROR main main_error - ERRORE: Utente non aggiunto
+2024-01-30 05:14:26 ERROR main main_error - Tessera non aggiunta: ERRORE
+2024-01-30 05:14:26 ERROR main main_error - Tickets non aggiunto: ERRORE
+2024-01-30 05:14:26 ERROR main main_error - Tickets non aggiunto: ERRORE
+2024-01-30 05:19:03 ERROR main main_error - ERRORE: Utente non aggiunto
+2024-01-30 05:19:03 ERROR main main_error - ERRORE: Utente non aggiunto
+2024-01-30 05:19:03 ERROR main main_error - Tessera non aggiunta: ERRORE
+2024-01-30 05:19:03 ERROR main main_error - Tickets non aggiunto: ERRORE
+2024-01-30 05:19:03 ERROR main main_error - Tickets non aggiunto: ERRORE
+2024-01-30 05:25:32 ERROR main main_error - ERRORE: Utente non aggiunto
+2024-01-30 05:25:32 ERROR main main_error - ERRORE: Utente non aggiunto
+2024-01-30 05:25:32 ERROR main main_error - Tessera non aggiunta: ERRORE
+2024-01-30 05:25:32 ERROR main main_error - Tickets non aggiunto: ERRORE
+2024-01-30 05:25:32 ERROR main main_error - Tickets non aggiunto: ERRORE
+2024-01-30 05:26:37 ERROR main main_error - ERRORE: Utente non aggiunto
+2024-01-30 05:28:02 ERROR main main_error - ERRORE: Utente non aggiunto
+2024-01-30 05:28:02 ERROR main main_error - Tessera non aggiunta: ERRORE
+2024-01-30 05:28:02 ERROR main main_error - Tickets non aggiunto: ERRORE
+2024-01-30 05:28:02 ERROR main main_error - Tickets non aggiunto: ERRORE
+2024-01-30 05:28:02 ERROR main main_error - ERRORE: Utente non aggiunto
+2024-01-30 05:31:20 ERROR main main_error - Tessera non aggiunta: ERRORE
+2024-01-30 05:31:20 ERROR main main_error - Tickets non aggiunto: ERRORE
+2024-01-30 05:31:20 ERROR main main_error - Tickets non aggiunto: ERRORE
+2024-01-31 09:27:53 ERROR main main_error - Abbonamento non emesso : Errore
+2024-01-31 09:30:07 ERROR main main_error - Abbonamento non emesso : Errore
+2024-01-31 09:38:15 ERROR main main_error - Abbonamento non emesso : Errore
+2024-01-31 09:50:25 ERROR main main_error - Errore nel lancio emissioneAbbonamento
+2024-01-31 10:01:13 ERROR main main_error - Errore nel lancio emissioneAbbonamento
+2024-01-31 10:02:25 ERROR main main_error - Errore nel lancio emissioneAbbonamento
+2024-01-31 10:07:30 ERROR main main_error - Tickets non aggiunto: ERRORE
+2024-01-31 10:07:30 ERROR main main_error - Tickets non aggiunto: ERRORE
+2024-01-31 10:07:30 ERROR main main_error - Tickets non aggiunto: ERRORE
+2024-01-31 10:23:11 ERROR main main_error - l'abbonamento incredibilmente non ha la periodicità richiesta, ci scusiamo per il disagio!
+2024-01-31 10:31:31 ERROR main main_error - Errore nel lancio emissioneAbbonamento
+2024-01-31 10:51:07 ERROR main main_error - Errore nel lancio emissioneAbbonamento
+2024-01-31 11:20:18 ERROR main main_error - Errore nel lancio emissioneAbbonamento
+2024-01-31 11:47:33 ERROR main main_error - Errore nel lancio emissioneAbbonamento
+2024-01-31 11:47:59 ERROR main main_error - Errore nel lancio emissioneAbbonamento
+2024-01-31 11:48:50 ERROR main main_error - Abbonamento non emesso : Errore
+2024-01-31 12:48:06 ERROR main main_error - Abbonamento non emesso : Errore
+2024-01-31 12:48:06 ERROR main main_error - Tessera non ancora scaduta
+2024-01-31 12:49:19 ERROR main main_error - Abbonamento non emesso : Errore
+2024-01-31 01:16:07 ERROR main main_error - Abbonamento non emesso : Errore
+2024-01-31 01:17:58 ERROR main main_error - Abbonamento non emesso : Errore
+2024-01-31 01:18:49 ERROR main main_error - Abbonamento non emesso : Errore
+2024-01-31 01:18:49 ERROR main main_error - Argument [16] of type [java.lang.Integer] did not match parameter type [entities.Mezzi (n/a)]
+2024-01-31 01:23:30 ERROR main main_error - Abbonamento non emesso : Errore

@@ -1,6 +1,7 @@
 package dao;
 
 import entities.Mezzi;
+import entities.Utente;
 import jakarta.persistence.*;
 
 public class MezziDAO {
@@ -30,5 +31,9 @@ public class MezziDAO {
 
     public Mezzi getById(int id){
         return em.find(Mezzi.class, id);
+    }
+    public Mezzi refresh (Mezzi mezzo){
+        em.refresh(mezzo);
+        return mezzo;
     }
 }

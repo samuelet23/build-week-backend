@@ -4,7 +4,10 @@ import entities.Tessera;
 import entities.Utente;
 import jakarta.persistence.*;
 
+import java.security.Timestamp;
 import java.time.LocalDate;
+import java.util.Date;
+
 
 public class TesseraDao {
     private EntityManagerFactory emf;
@@ -40,14 +43,11 @@ public class TesseraDao {
         et.begin();
         LocalDate oggi = LocalDate.now();
         Query check = em.createNamedQuery("validationTessera");
-        check.setParameter("oggi", oggi);
         check.setParameter("numeroTessera", utente.getNumeroTessera().getId());
-
         et.commit();
-        if (check.getSingleResult().equals(0)){
+        Tessera tessera = (Tessera) check.getSingleResult();
+        if (tessera.getDataScadenza().isBefore(oggi)){
             return false;
-        } else {
-            return true;
-        }
+        } else return true;
     }
 }

@@ -10,7 +10,6 @@
       <change beforePath="$PROJECT_DIR$/logs/main_info.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/main_info.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/TesseraDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/TesseraDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/UtenteDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/UtenteDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/entities/Tessera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Tessera.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -110,7 +109,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Main.java</url>
-          <line>104</line>
+          <line>105</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>

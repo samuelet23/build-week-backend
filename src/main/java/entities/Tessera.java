@@ -10,7 +10,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "tessera")
-@NamedQuery(name ="validationTessera", query = "SELECT COUNT(t)  FROM Tessera t WHERE t.dataScadenza <= :oggi AND t.id = :numeroTessera")
+@NamedQuery(name ="validationTessera", query = "SELECT t FROM Tessera t WHERE (t.id = :numeroTessera)")
 //@NamedQuery(name ="validationTesseraV2", query = "SELECT CASE WHEN t.dataScadenza > :oggi THEN true ELSE false END FROM Tessera t WHERE t.numeroTessera = :numeroTessera")
 
 public class Tessera {

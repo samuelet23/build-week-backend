@@ -102,6 +102,7 @@ public class Main {
     
     public static void emissioneAbbonamento(Utente utente, PuntiDiEmissione puntiDiEmissione, Periodicita periodo) {
         utenteDao.refresh(utente);
+        System.out.println(tesseraDao.checkValidationTessera(utente));
         if ( tesseraDao.checkValidationTessera(utente)) {
             Abbonamenti abbonamento = new Abbonamenti();
             abbonamento.setTessera(utente.getNumeroTessera());

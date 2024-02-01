@@ -108,17 +108,24 @@ public class Main {
     //Acquista abbonamento collegato al menu utente
     public static void acquistaAbbonamento(){
         PuntiDiEmissione puntoSelezionato = scegliPuntoEmissione();
-        try {
+        Periodicita periodicita;
+        Utente utente;
+       try {
             //funziona per chiedere all'utente l'id
-            Utente utente = askIdUtente();
-            //funziona per chiedere all'utente la periodicità
-            Periodicita periodicita = askPeriodicita();
            do {
-               periodicita = askPeriodicita();
+           utente= askIdUtente();
+           }while (utente == null);
+            //funziona per chiedere all'utente la periodicità
+           do {
+             periodicita = askPeriodicita();
            }while (periodicita == null);
 
-            System.out.println("Sei sicuro di voler acquistare l'abbonamento per 50 euro da : " + puntoSelezionato.getNome() + "?  Y/N");
-            String answer = scanner.next();
+           if (periodicita == Periodicita.SETTIMANALE) {
+            System.out.println("Sei sicuro di voler acquistare l'abbonamento per 10 euro da : " + puntoSelezionato.getNome() + "?  Y/N");
+           } else if (periodicita == Periodicita.MENSILE) {
+            System.out.println("Sei sicuro di voler acquistare l'abbonamento per 410 euro da : " + puntoSelezionato.getNome() + "?  Y/N");
+           }
+           String answer = scanner.next();
             if (answer.toLowerCase().equals("y") ) {
                 Abbonamenti abbonamento = emissioneAbbonamento(utente,puntoSelezionato, periodicita);
                 infoLogger.info( " emesso" + abbonamento );
@@ -146,7 +153,6 @@ public class Main {
             }
         }catch (Exception e){
             errorLogger.error(e.getMessage());
-            askIdUtente();
         }
         return utente;
     }
@@ -262,13 +268,14 @@ public class Main {
         if ( tesseraDao.checkValidationTessera(utente)) {
             abbonamento.setTessera(utente.getNumeroTessera());
             abbonamento.setValido(true);
-            abbonamento.setPrezzo(50);
             abbonamento.setPeriodicita(periodo);
             abbonamento.setDataEmissione(LocalDate.now());
             if (abbonamento.getPeriodicita() == Periodicita.MENSILE) {
                 abbonamento.setScadenza(abbonamento.getDataEmissione().plusMonths(1));
+                abbonamento.setPrezzo(40);
             } else if (abbonamento.getPeriodicita() == Periodicita.SETTIMANALE){
                 abbonamento.setScadenza(abbonamento.getDataEmissione().plusWeeks(1));
+                abbonamento.setPrezzo(10);
             } else {
                 errorLogger.error("l'abbonamento incredibilmente non ha la periodicità richiesta, ci scusiamo per il disagio!");
             }

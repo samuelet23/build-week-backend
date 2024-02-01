@@ -123,7 +123,7 @@ public class Main {
            if (periodicita == Periodicita.SETTIMANALE) {
             System.out.println("Sei sicuro di voler acquistare l'abbonamento per 10 euro da : " + puntoSelezionato.getNome() + "?  Y/N");
            } else if (periodicita == Periodicita.MENSILE) {
-            System.out.println("Sei sicuro di voler acquistare l'abbonamento per 410 euro da : " + puntoSelezionato.getNome() + "?  Y/N");
+            System.out.println("Sei sicuro di voler acquistare l'abbonamento per 40 euro da : " + puntoSelezionato.getNome() + "?  Y/N");
            }
            String answer = scanner.next();
             if (answer.toLowerCase().equals("y") ) {
@@ -149,7 +149,6 @@ public class Main {
                 infoLogger.info("Utente trovato");
             } else{
                 System.out.println("Utente non trovato");
-                askIdUtente();
             }
         }catch (Exception e){
             errorLogger.error(e.getMessage());
@@ -283,7 +282,7 @@ public class Main {
             infoLogger.info("Abbonamento emesso correttamente");
             saveTickets(abbonamento);
         } else {
-            errorLogger.error("Abbonamento non emesso : Errore");
+            errorLogger.error("Abbonamento non emesso : Errore Tessera scaduta o non Valida");
         }
         return abbonamento;
     }

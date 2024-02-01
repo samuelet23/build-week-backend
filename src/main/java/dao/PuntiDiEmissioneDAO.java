@@ -6,6 +6,7 @@ import entities.PuntiDiEmissione;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PuntiDiEmissioneDAO {
     private EntityManagerFactory emf;
@@ -33,11 +34,26 @@ public class PuntiDiEmissioneDAO {
         return em.find(PuntiDiEmissione.class, id);
     }
 
-    public List<PuntiDiEmissione> getAllInServizio (){
+    public List<PuntiDiEmissione> getAll(){
         EntityTransaction et = em.getTransaction();
         et.begin();
-
+        Query query = em.createNamedQuery("selectAllPunti");
+        List<PuntiDiEmissione> lista = query.getResultList();
+        et.commit();
+        return lista;
     }
+    public List<PuntiDiEmissione> getDistributoriInServizio(){
+        EntityTransaction et = em.getTransaction();
+        et.begin();
+        Query query = em.createNamedQuery("getDistributoriAttivi");
+        List<PuntiDiEmissione> onservice = query.getResultList();
+        et.commit();
+        List<PuntiDiEmissione> all = getAll();
+        return all.stream()
+                .filter(p -> onservice.contains(p))
+                .collect(Collectors.toList());
+    }
+
 
     public void setFuoriServizio (DistributoriAutomatici fuoriServizio){
         EntityTransaction et = em.getTransaction();

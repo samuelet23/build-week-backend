@@ -7,7 +7,8 @@ import java.util.Set;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@NamedQuery(name = "puntiInServizio", query = "SELECT p FROM PuntiDiEmissione WHERE p.")
+//@NamedQuery(name = "puntiInServizio", query = "SELECT p FROM PuntiDiEmissione WHERE p.")
+@NamedQuery( name = "selectAllPunti", query = "SELECT p FROM PuntiDiEmissione p")
 public class PuntiDiEmissione {
     @Id
     @GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "id_punti_emissione")
@@ -68,7 +69,6 @@ public class PuntiDiEmissione {
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", citta='" + citta + '\'' +
-                ", tickets_emessi=" + tickets_emessi +
                 '}';
     }
 }

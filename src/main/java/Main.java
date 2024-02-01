@@ -6,6 +6,7 @@ import org.slf4j.*;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -39,14 +40,24 @@ public class Main {
         } while (true);
     }
 
+    //ZONA CHOICE CHECKER
 
     public static void choiceCheckerIntro(int choice){
-
         switch (choice){
             case 1: menuUtente();
             break;
             case 2 : menuRivenditore();
             break;
+            default :
+                System.out.println("Scelta sbagliata, riprova.");
+        }
+    }
+    public static void choiceCheckerUtente(int choice){
+        switch (choice){
+            case 1: acquistaBiglietto();
+                break;
+            case 2 : menuRivenditore();
+                break;
             default :
                 System.out.println("Scelta sbagliata, riprova.");
         }
@@ -58,6 +69,7 @@ public class Main {
             System.out.println("1 - Acquista Biglietto");
             System.out.println("2 - Acquista Abbonamento");
             System.out.println("3 - Acquista Tessera");
+            System.out.println("3 - Acquista Tessera");
             System.out.println("9 - Tornare al menù precedente");
             System.out.println("0 - Uscire dal programma");
             int choice = scanner.nextInt();
@@ -65,16 +77,45 @@ public class Main {
                 return;
             } else if (choice == 0){
                 System.exit(0);
-            } else {
-                System.out.println("Scelta sbagliata riprova");
-                continue;
             }
+            choiceCheckerUtente(choice);
         } while (true);
     }
 
     public static void acquistaBiglietto(){
-
-       puntiDiEmissioneDAO.
+        List<PuntiDiEmissione> puntiAttivi = new ArrayList<>(puntiDiEmissioneDAO.getDistributoriInServizio());
+        PuntiDiEmissione puntoSelezionato = null;
+        do  {
+            System.out.println("Punti Di Emissione Attivi Ora:");
+            puntiAttivi.stream().forEach(e -> System.out.println(e));
+            if (puntoSelezionato == null){
+                System.out.println("Nessun punto selezionato");
+            } else {
+                System.out.println("Punto Selezionato Al momento:");
+                System.out.println(puntoSelezionato);
+            }
+            System.out.println("Inserisci l'id del punto di emissione, inserisci 0 per confermare e emettere il biglietto");
+            int choice = scanner.nextInt();
+            if (choice == 0) {
+                System.out.println("Sei sicuro di voler acquistare il biglietto per 3 euro ? da : " + puntoSelezionato.getNome() + " Y/N" );
+                String answer = scanner.next();
+                if (answer.toLowerCase().equals("y") && puntoSelezionato != null){
+                    emissioneBiglietto(puntoSelezionato);
+                } else if (answer.toLowerCase().equals("y") && puntoSelezionato == null) {
+                    System.out.println("Punto non selezionato");
+                    continue;
+                } else {
+                    System.out.println("Biglietto Non Emesso - Stai per tornare indietro al menu utente");
+                    menuUtente();
+                }
+            }
+            try {
+                puntoSelezionato = puntiDiEmissioneDAO.getById(choice);
+                infoLogger.info("Punto selezionato con successo");
+            } catch (Exception e){
+                errorLogger.error(e.getMessage());
+            }
+        } while (true);
 
     }
 

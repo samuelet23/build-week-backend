@@ -29,7 +29,8 @@ public class Main {
     public static void menu(){
         System.out.println("Benvenuto in Trasporto Pubblico");
         do {
-            System.out.println("Sei un utente/rivenditore? 1 - Utente , 2 - Rivenditore");
+            System.out.println(" 1 - Utente , 2 - Rivenditore, 3 Gestione Mezzi, 4 Gestione tratte");
+            System.out.println(" 0 - per uscire dal programma");
             int choice = scanner.nextInt();
             if (choice == 0){
                 break;
@@ -61,11 +62,20 @@ public class Main {
             System.out.println("0 - Uscire dal programma");
             int choice = scanner.nextInt();
             if (choice == 9 ){
-                menu();
-            } else if (choice == 0){
                 return;
+            } else if (choice == 0){
+                System.exit(0);
+            } else {
+                System.out.println("Scelta sbagliata riprova");
+                continue;
             }
         } while (true);
+    }
+
+    public static void acquistaBiglietto(){
+
+       puntiDiEmissioneDAO.
+
     }
 
     public static void menuRivenditore(){

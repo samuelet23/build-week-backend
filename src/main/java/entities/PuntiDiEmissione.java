@@ -7,6 +7,7 @@ import java.util.Set;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@NamedQuery(name = "puntiInServizio", query = "SELECT p FROM PuntiDiEmissione WHERE p.")
 public class PuntiDiEmissione {
     @Id
     @GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "id_punti_emissione")

@@ -5,6 +5,8 @@ import entities.PuntiDiEmissione;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 public class PuntiDiEmissioneDAO {
     private EntityManagerFactory emf;
     private EntityManager em;
@@ -28,8 +30,13 @@ public class PuntiDiEmissioneDAO {
         et.commit();
     }
     public PuntiDiEmissione getById(int id){
-
         return em.find(PuntiDiEmissione.class, id);
+    }
+
+    public List<PuntiDiEmissione> getAllInServizio (){
+        EntityTransaction et = em.getTransaction();
+        et.begin();
+
     }
 
     public void setFuoriServizio (DistributoriAutomatici fuoriServizio){

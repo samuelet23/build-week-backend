@@ -7,6 +7,7 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
+import java.util.Scanner;
 
 
 public class Main {
@@ -19,6 +20,7 @@ public class Main {
     private static final TesseraDao tesseraDao = new TesseraDao();
     private static final TicketsDao ticketsDao = new TicketsDao();
     private static final UtenteDao utenteDao = new UtenteDao();
+    private static final Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
 
 
@@ -176,11 +178,58 @@ public class Main {
         System.out.println(tratteDAO.tempoEffettivoTratta(tratta1));
 
 
+//        menu();
 
 
 
 
 
+    }
+
+    public static void menu(){
+        System.out.println("Benvenuto in Trasporto Pubblico");
+        do {
+            System.out.println("Sei un utente/rivenditore? 1 - Utente , 2 - Rivenditore");
+            int choice = scanner.nextInt();
+            if (choice == 0){
+                break;
+            }
+            choiceCheckerIntro(choice);
+        } while (true);
+    }
+
+
+    public static void choiceCheckerIntro(int choice){
+
+        switch (choice){
+            case 1: menuUtente();
+            break;
+            case 2 : menuRivenditore();
+            break;
+            default :
+                System.out.println("Scelta sbagliata, riprova.");
+        }
+    }
+
+    public static void menuUtente(){
+        do {
+            System.out.println("---- Menù Utente ----");
+            System.out.println("1 - Acquista Biglietto");
+            System.out.println("2 - Acquista Abbonamento");
+            System.out.println("3 - Acquista Tessera");
+            System.out.println("9 - Tornare al menù precedente");
+            System.out.println("0 - Uscire dal programma");
+            int choice = scanner.nextInt();
+            if (choice == 9 ){
+                menu();
+            } else if (choice == 0){
+                return;
+            }
+        } while (true);
+    }
+
+    public static void menuRivenditore(){
+        System.out.println("menu rivenditore");
     }
 
     //metodo per l'emissione di un biglietto

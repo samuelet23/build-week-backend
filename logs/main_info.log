@@ -1059,3 +1059,37 @@
 2024-01-31 17:27:55,046 INFO main main_info - Lista mezzi in servizio acquisita
 2024-01-31 17:27:55,057 INFO main main_info - Lista biglietti vidimati per mezzo  acquisita
 2024-01-31 17:27:55,123 INFO main main_info - Lista biglietti vidimati per data  acquisita
+2024-02-01 14:04:35,866 INFO main main_info - Aggiunta del mezzo riuscita con successo!
+2024-02-01 14:04:35,874 INFO main main_info - Punto di emissioneDistributoriAutomatici{in_servizio=true}aggiunto
+2024-02-01 14:04:35,886 INFO main main_info - Utente aggiunto correttamente
+2024-02-01 14:04:35,895 INFO main main_info - Tessera aggiunta
+2024-02-01 14:04:35,904 INFO main main_info - Tickets aggiunto
+2024-02-01 14:04:35,920 INFO main main_info - Tickets aggiunto
+2024-02-01 14:04:35,925 INFO main main_info - Aggiunta del mezzo riuscita con successo!
+2024-02-01 14:04:35,933 INFO main main_info - Aggiunta tratta riuscita con successo!
+2024-02-01 14:04:35,937 INFO main main_info - Distributore aggiornato!
+2024-02-01 14:04:36,019 INFO main main_info - Lancio emissioneAbbonamento effettuato
+2024-02-01 14:04:36,024 INFO main main_info - Tessera aggiunta
+2024-02-01 14:04:36,025 INFO main main_info - Tessera rinnovata!
+2024-02-01 14:04:36,047 INFO main main_info - Il mezzo è stato in manutenzione in questa data
+2024-02-01 14:04:36,123 INFO main main_info - Lista mezzi in manutenzione acquisita
+2024-02-01 14:04:36,146 INFO main main_info - Lista mezzi in servizio acquisita
+2024-02-01 14:04:36,160 INFO main main_info - Lista biglietti vidimati per mezzo  acquisita
+2024-02-01 14:04:36,165 INFO main main_info - Lista biglietti vidimati per data  acquisita
+2024-02-01 14:26:32,656 INFO main main_info - Aggiunta del mezzo riuscita con successo!
+2024-02-01 14:26:32,663 INFO main main_info - Punto di emissioneDistributoriAutomatici{in_servizio=true}aggiunto
+2024-02-01 14:26:32,670 INFO main main_info - Utente aggiunto correttamente
+2024-02-01 14:26:32,676 INFO main main_info - Tessera aggiunta
+2024-02-01 14:26:32,684 INFO main main_info - Tickets aggiunto
+2024-02-01 14:26:32,695 INFO main main_info - Tickets aggiunto
+2024-02-01 14:26:32,698 INFO main main_info - Aggiunta del mezzo riuscita con successo!
+2024-02-01 14:26:32,705 INFO main main_info - Aggiunta tratta riuscita con successo!
+2024-02-01 14:26:32,707 INFO main main_info - Distributore aggiornato!
+2024-02-01 14:26:32,763 INFO main main_info - Lancio emissioneAbbonamento effettuato
+2024-02-01 14:26:32,767 INFO main main_info - Tessera aggiunta
+2024-02-01 14:26:32,767 INFO main main_info - Tessera rinnovata!
+2024-02-01 14:26:32,786 INFO main main_info - Il mezzo è stato in manutenzione in questa data
+2024-02-01 14:26:32,839 INFO main main_info - Lista mezzi in manutenzione acquisita
+2024-02-01 14:26:32,858 INFO main main_info - Lista mezzi in servizio acquisita
+2024-02-01 14:26:32,867 INFO main main_info - Lista biglietti vidimati per mezzo  acquisita
+2024-02-01 14:26:32,875 INFO main main_info - Lista biglietti vidimati per data  acquisita

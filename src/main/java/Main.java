@@ -63,12 +63,12 @@ public class Main {
         }
     }
 
+    //ZONA MENÙ
     public static void menuUtente(){
         do {
             System.out.println("---- Menù Utente ----");
             System.out.println("1 - Acquista Biglietto");
             System.out.println("2 - Acquista Abbonamento");
-            System.out.println("3 - Acquista Tessera");
             System.out.println("3 - Acquista Tessera");
             System.out.println("9 - Tornare al menù precedente");
             System.out.println("0 - Uscire dal programma");
@@ -82,6 +82,28 @@ public class Main {
         } while (true);
     }
 
+
+
+
+    public static void menuRivenditore(){
+        do {
+            System.out.println("---- Menù Rivenditore ----");
+            System.out.println("1 - Emetti Tessera ");
+            System.out.println("2 - Acquista Abbonamento");
+            System.out.println("3 - Acquista Tessera");
+            System.out.println("9 - Tornare al menù precedente");
+            System.out.println("0 - Uscire dal programma");
+            int choice = scanner.nextInt();
+            if (choice == 9 ){
+                return;
+            } else if (choice == 0){
+                System.exit(0);
+            }
+            choiceCheckerUtente(choice);
+        } while (true);
+    }
+
+    //Acquista biglietto collegato al menu utente
     public static void acquistaBiglietto(){
         List<PuntiDiEmissione> puntiAttivi = new ArrayList<>(puntiDiEmissioneDAO.getDistributoriInServizio());
         PuntiDiEmissione puntoSelezionato = null;
@@ -120,12 +142,6 @@ public class Main {
             }
         } while (true);
     }
-
-
-    public static void menuRivenditore(){
-        System.out.println("menu rivenditore");
-    }
-
     //metodo per l'emissione di un biglietto
     public static Biglietti emissioneBiglietto(PuntiDiEmissione puntiDiEmissione){
         Biglietti biglietto = new Biglietti();
@@ -133,6 +149,7 @@ public class Main {
         biglietto.setPuntiDiEmissione(puntiDiEmissione);
         biglietto.setDataEmissione(LocalDate.now());
         biglietto.setPrezzo(3);
+        saveTickets(biglietto);
         return biglietto;
     }
 

@@ -112,6 +112,10 @@ public class Main {
             Utente utente = askIdUtente();
             //funziona per chiedere all'utente la periodicità
             Periodicita periodicita = askPeriodicita();
+           do {
+               periodicita = askPeriodicita();
+           }while (periodicita == null);
+
             System.out.println("Sei sicuro di voler acquistare l'abbonamento per 50 euro da : " + puntoSelezionato.getNome() + "?  Y/N");
             String answer = scanner.next();
             if (answer.toLowerCase().equals("y") ) {
@@ -147,24 +151,26 @@ public class Main {
     }
 
     //funziona per chiedere all'utente la periodicità
-    public static Periodicita askPeriodicita(){
-        Periodicita periodicita = null;
+    public static Periodicita askPeriodicita() {
+
         System.out.println("Insersci la durata dell'abbonamento:");
         System.out.println("1 - SETTIMANALE, 2 - MENSILE");
         int choice = scanner.nextInt();
-        if (choice == 1 ) {
-            periodicita = Periodicita.SETTIMANALE;
+        if (choice == 1) {
+            return Periodicita.SETTIMANALE;
         } else if (choice == 2) {
-            periodicita = Periodicita.MENSILE;
-        } else{
+            return Periodicita.MENSILE;
+        } else {
             errorLogger.error("ERRORE: Il periodo scelto non esiste");
-            askPeriodicita();
+            return null;
         }
-        return periodicita;
+
     }
 
     //Acquista tessera collegato al menu utente
-    public static void acquistaTessera(){}
+    public static void acquistaTessera(){
+
+    }
 
 
     //Acquista biglietto collegato al menu utente
@@ -248,7 +254,6 @@ public class Main {
 
     //metodo che emette un abbonamento controllando che l'utente abbia una tessera valida
     public static Abbonamenti emissioneAbbonamento(Utente utente, PuntiDiEmissione puntiDiEmissione, Periodicita periodo) {
-        utenteDao.refresh(utente);
         Abbonamenti abbonamento = new Abbonamenti();
         System.out.println(tesseraDao.checkValidationTessera(utente));
         if ( tesseraDao.checkValidationTessera(utente)) {

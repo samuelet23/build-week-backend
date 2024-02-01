@@ -11,6 +11,7 @@ import java.util.List;
 @Table (name = "mezzi")
 @NamedQuery( name = "setInManutenzione", query = "UPDATE Mezzi m SET m.in_manutenzione = true WHERE m.id = :id")
 @NamedQuery( name = "setOffManutenzione", query = "UPDATE Mezzi m SET m.in_manutenzione = false WHERE m.id = :id")
+@NamedQuery( name = "selectAllMezzi", query = "SELECT m FROM Mezzi m")
 public class Mezzi {
     @Id
     @GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "id_mezzi")
@@ -111,9 +112,7 @@ public class Mezzi {
                 ", tipo=" + tipo +
                 ", capienza=" + capienza +
                 ", in_manutenzione=" + in_manutenzione +
-                ", biglietti=" + biglietti +
-                ", lista_tratte=" + lista_tratte +
-                ", lista_manutenzioni=" + lista_manutenzioni +
+//                ", biglietti=" + biglietti +
                 '}';
     }
 }

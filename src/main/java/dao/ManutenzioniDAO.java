@@ -4,6 +4,11 @@ import entities.Manutenzioni;
 import entities.Mezzi;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
+
 public class ManutenzioniDAO {
     private EntityManagerFactory emf;
     private EntityManager em;
@@ -47,10 +52,46 @@ public class ManutenzioniDAO {
         et.commit();
     }
 
+    public List<Manutenzioni> tracciaMezzoInManutenzione(Mezzi mezzo, LocalDate dataInizio, LocalDate dataFine){
+        EntityTransaction et = em.getTransaction();
+        et.begin();
+        Query tracciaInManutenzione = em.createNamedQuery("tracciaPeriodoManutenzione");
+        tracciaInManutenzione.setParameter("mezzo", mezzo)
+                .setParameter("dataInizio", dataInizio)
+                .setParameter("dataFine", dataFine);
+        et.commit();
+        return tracciaInManutenzione.getResultList();
+    }
     public Manutenzioni getById(int id){
         return em.find(Manutenzioni.class, id);
     }
-    public Manutenzioni getAll (){
-        return 
+
+    public List<Mezzi> selectAllMezzi(){
+        EntityTransaction et = em.getTransaction();
+        et.begin();
+         List<Mezzi> list = em.createNamedQuery("selectAllMezzi").getResultList();
+         et.commit();
+         return  list;
     }
+
+    public List<Mezzi> getMezziInManutenzione(){
+        EntityTransaction et = em.getTransaction();
+        LocalDate oggi = LocalDate.now();
+        et.begin();
+        Query query = em.createNamedQuery("tracciaMezziInManutenzione");
+        query.setParameter("oggi", oggi);
+       List<Manutenzioni> manutenzioni =  query.getResultList();
+       et.commit();
+       return manutenzioni.stream()
+               .map(el-> el.getMezzo()).collect(Collectors.toList());
+    }
+    public List<Mezzi> getMezziInServizio(){
+        List<Mezzi> allMezzi = selectAllMezzi();
+        List<Mezzi> mezziInManutenzione = getMezziInManutenzione();
+        return allMezzi
+                .stream()
+                .filter(m -> !mezziInManutenzione.contains(m))
+                .collect(Collectors.toList());
+    }
+
 }

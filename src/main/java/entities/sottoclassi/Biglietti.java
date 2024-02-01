@@ -9,6 +9,9 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "biglietti")
+@NamedQuery(name = "bigliettiVidimatiPerMezzo", query = "SELECT b FROM Biglietti b WHERE b.mezzo = :mezzo")
+@NamedQuery(name = "bigliettiVidimatiPerTempo", query = "SELECT b FROM Biglietti b WHERE b.dataVidimazione BETWEEN :dataInizio AND :dataFine")
+@NamedQuery(name = "bigliettiVidimatiTotale", query = "SELECT b FROM Biglietti b WHERE b.mezzo = :mezzo AND b.dataVidimazione BETWEEN :dataInizio AND :dataFine")
 public class Biglietti extends Tickets {
 
     @Column(name = "data_vidimazione")
@@ -51,7 +54,6 @@ public class Biglietti extends Tickets {
     public String toString() {
         return "Biglietti{" +
                 "dataVidimazione=" + dataVidimazione +
-                ", mezzo=" + mezzo +
                 ", puntiDiEmissione=" + puntiDiEmissione +
                 ", dataEmissione=" + dataEmissione +
                 ", valido=" + valido +

@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="647afd16-3174-4bdc-977b-660c6f6ce546" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/ManutenzioniDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/ManutenzioniDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +69,15 @@
       <option name="presentableId" value="Default" />
       <updated>1706519401068</updated>
     </task>
+    <task id="LOCAL-00001" summary="fixing lista manutenzione">
+      <option name="closed" value="true" />
+      <created>1706715376976</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1706715376976</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -84,7 +91,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/davide-test" />
+                        <option value="origin/Davide" />
                       </list>
                     </value>
                   </entry>
@@ -95,6 +102,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fixing lista manutenzione" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixing lista manutenzione" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

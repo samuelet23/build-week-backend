@@ -56,7 +56,9 @@ public class Main {
         switch (choice){
             case 1: acquistaBiglietto();
                 break;
-            case 2 : menuRivenditore();
+            case 2 : acquistaAbbonamento();
+                break;
+            case 3 : acquistaTessera();
                 break;
             default :
                 System.out.println("Scelta sbagliata, riprova.");
@@ -102,9 +104,71 @@ public class Main {
             choiceCheckerUtente(choice);
         } while (true);
     }
+    //Acquista abbonamento collegato al menu utente
+    public static void acquistaAbbonamento(){
+        PuntiDiEmissione puntoSelezionato = scegliPuntoEmissione();
+        try {
+            //funziona per chiedere all'utente l'id
+            Utente utente = askIdUtente();
+            //funziona per chiedere all'utente la periodicità
+            Periodicita periodicita = askPeriodicita();
+            System.out.println("Sei sicuro di voler acquistare l'abbonamento per 50 euro da : " + puntoSelezionato.getNome() + "?  Y/N");
+            String answer = scanner.next();
+            if (answer.toLowerCase().equals("y") ) {
+                Abbonamenti abbonamento = emissioneAbbonamento(utente,puntoSelezionato, periodicita);
+                infoLogger.info( " emesso" + abbonamento );
+                menuUtente();
+            } else {
+                System.out.println("Abbonamento Non Emesso - Stai per tornare indietro al menu utente");
+                menuUtente();
+            }
+        } catch (Exception e){
+            errorLogger.error(e.getMessage());
+        }
+    }
+    //funziona per chiedere all'utente l'id
+    public static Utente askIdUtente(){
+        Utente utente = new Utente();
+        System.out.println("Inserisci id utente");
+        int choice = scanner.nextInt();
+        try{
+            utente = utenteDao.getById(choice);
+            if (utente != null){
+                infoLogger.info("Utente trovato");
+            } else{
+                System.out.println("Utente non trovato");
+                askIdUtente();
+            }
+        }catch (Exception e){
+            errorLogger.error(e.getMessage());
+            askIdUtente();
+        }
+        return utente;
+    }
+
+    //funziona per chiedere all'utente la periodicità
+    public static Periodicita askPeriodicita(){
+        Periodicita periodicita = null;
+        System.out.println("Insersci la durata dell'abbonamento:");
+        System.out.println("1 - SETTIMANALE, 2 - MENSILE");
+        int choice = scanner.nextInt();
+        if (choice == 1 ) {
+            periodicita = Periodicita.SETTIMANALE;
+        } else if (choice == 2) {
+            periodicita = Periodicita.MENSILE;
+        } else{
+            errorLogger.error("ERRORE: Il periodo scelto non esiste");
+            askPeriodicita();
+        }
+        return periodicita;
+    }
+
+    //Acquista tessera collegato al menu utente
+    public static void acquistaTessera(){}
+
 
     //Acquista biglietto collegato al menu utente
-    public static void acquistaBiglietto(){
+    public static PuntiDiEmissione scegliPuntoEmissione(){
         List<PuntiDiEmissione> puntiAttivi = new ArrayList<>(puntiDiEmissioneDAO.getDistributoriInServizio());
         PuntiDiEmissione puntoSelezionato = null;
         do  {
@@ -116,22 +180,16 @@ public class Main {
                 System.out.println("Punto Selezionato Al momento:");
                 System.out.println(puntoSelezionato);
             }
-            System.out.println("Inserisci l'id del punto di emissione, inserisci 0 per confermare e emettere il biglietto");
+            System.out.println("Inserisci l'id del punto di emissione, inserisci 0 per confermare");
             int choice = scanner.nextInt();
             if (choice == 0) {
-                try {
-                    System.out.println("Sei sicuro di voler acquistare il biglietto per 3 euro ? da : " + puntoSelezionato.getNome() + " Y/N");
-                    String answer = scanner.next();
-                    if (answer.toLowerCase().equals("y") ) {
-                        Biglietti biglietto = emissioneBiglietto(puntoSelezionato);
-                        infoLogger.info( " emesso" + biglietto );
-                        menuUtente();
-                    } else {
-                        System.out.println("Biglietto Non Emesso - Stai per tornare indietro al menu utente");
-                        menuUtente();
-                    }
-                } catch (Exception e){
-                    errorLogger.error(e.getMessage());
+                System.out.println("Hai selezionato : "+puntoSelezionato);
+                System.out.println("Sei sicuro di voler continuare? Y/N");
+                String answer = scanner.next();
+                if (answer.toLowerCase().equals("y")) {
+                    return puntoSelezionato;
+                }else {
+                    continue;
                 }
             }
             try {
@@ -142,6 +200,29 @@ public class Main {
             }
         } while (true);
     }
+
+
+    public static void acquistaBiglietto(){
+        PuntiDiEmissione puntoSelezionato = scegliPuntoEmissione();
+        try {
+            System.out.println("Sei sicuro di voler acquistare il biglietto per 3 euro da : " + puntoSelezionato.getNome() + "?  Y/N");
+            String answer = scanner.next();
+            if (answer.toLowerCase().equals("y") ) {
+                Biglietti biglietto = emissioneBiglietto(puntoSelezionato);
+                infoLogger.info( " emesso" + biglietto );
+                menuUtente();
+            } else {
+                System.out.println("Biglietto Non Emesso - Stai per tornare indietro al menu utente");
+                menuUtente();
+            }
+        } catch (Exception e){
+            errorLogger.error(e.getMessage());
+        }
+    }
+
+
+
+
     //metodo per l'emissione di un biglietto
     public static Biglietti emissioneBiglietto(PuntiDiEmissione puntiDiEmissione){
         Biglietti biglietto = new Biglietti();
@@ -166,11 +247,11 @@ public class Main {
     }
 
     //metodo che emette un abbonamento controllando che l'utente abbia una tessera valida
-    public static void emissioneAbbonamento(Utente utente, PuntiDiEmissione puntiDiEmissione, Periodicita periodo) {
+    public static Abbonamenti emissioneAbbonamento(Utente utente, PuntiDiEmissione puntiDiEmissione, Periodicita periodo) {
         utenteDao.refresh(utente);
+        Abbonamenti abbonamento = new Abbonamenti();
         System.out.println(tesseraDao.checkValidationTessera(utente));
         if ( tesseraDao.checkValidationTessera(utente)) {
-            Abbonamenti abbonamento = new Abbonamenti();
             abbonamento.setTessera(utente.getNumeroTessera());
             abbonamento.setValido(true);
             abbonamento.setPrezzo(50);
@@ -189,6 +270,7 @@ public class Main {
         } else {
             errorLogger.error("Abbonamento non emesso : Errore");
         }
+        return abbonamento;
     }
     //metodo per aggiungere o aggiornare una manutenzione
     public static void saveManutenzioni(Manutenzioni man, Mezzi m){

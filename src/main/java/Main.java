@@ -111,6 +111,9 @@ public class Main {
         } catch (Exception e){
             errorLogger.error(e.getMessage());
         }
+        
+        
+        
 
         //test metodo per controllare se un mezzo era in manutenzione in un range di data
         try{

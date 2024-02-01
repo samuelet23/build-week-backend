@@ -9,6 +9,7 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 
 public class Main {
@@ -199,10 +200,12 @@ public class Main {
                 }
             }
             try {
-                puntoSelezionato = puntiDiEmissioneDAO.getById(choice);
+                puntoSelezionato = puntiAttivi.stream()
+                                .filter(p -> p.getId() == choice)
+                                        .findAny().get();
                 infoLogger.info("Punto selezionato con successo");
             } catch (Exception e){
-                errorLogger.error(e.getMessage());
+                errorLogger.error("Punto non in servizio");
             }
         } while (true);
     }

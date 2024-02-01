@@ -1095,3 +1095,15 @@
 2024-02-01 14:26:32,875 INFO main main_info - Lista biglietti vidimati per data  acquisita
 2024-02-01 15:13:35,082 INFO main main_info - Punto selezionato con successo
 2024-02-01 15:15:13,430 INFO main main_info - Punto selezionato con successo
+2024-02-01 15:25:06,798 INFO main main_info - Punto selezionato con successo
+2024-02-01 15:25:18,187 INFO main main_info - Punto selezionato con successo
+2024-02-01 15:27:46,936 INFO main main_info - Punto selezionato con successo
+2024-02-01 15:28:00,758 INFO main main_info - Biglietti{dataVidimazione=null, puntiDiEmissione=DistributoriAutomatici{PuntiDiEmissione{id=3, nome='BuyHere', citta='Milano'}in_servizio=true}, dataEmissione=2024-02-01, valido=true, prezzo=3} emesso
+2024-02-01 15:28:00,762 INFO main main_info - Punto selezionato con successo
+2024-02-01 15:31:06,027 INFO main main_info - Punto selezionato con successo
+2024-02-01 15:31:18,025 INFO main main_info - Punto selezionato con successo
+2024-02-01 15:31:27,241 INFO main main_info - Biglietti{dataVidimazione=null, puntiDiEmissione=DistributoriAutomatici{PuntiDiEmissione{id=3, nome='BuyHere', citta='Milano'}in_servizio=true}, dataEmissione=2024-02-01, valido=true, prezzo=3} emesso
+2024-02-01 15:31:36,176 INFO main main_info - Punto selezionato con successo
+2024-02-01 15:31:41,583 INFO main main_info - Biglietti{dataVidimazione=null, puntiDiEmissione=DistributoriAutomatici{PuntiDiEmissione{id=3, nome='BuyHere', citta='Milano'}in_servizio=true}, dataEmissione=2024-02-01, valido=true, prezzo=3} emesso
+2024-02-01 15:32:02,025 INFO main main_info - Punto selezionato con successo
+2024-02-01 15:32:06,537 INFO main main_info - Punto selezionato con successo

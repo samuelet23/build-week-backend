@@ -97,16 +97,19 @@ public class Main {
             System.out.println("Inserisci l'id del punto di emissione, inserisci 0 per confermare e emettere il biglietto");
             int choice = scanner.nextInt();
             if (choice == 0) {
-                System.out.println("Sei sicuro di voler acquistare il biglietto per 3 euro ? da : " + puntoSelezionato.getNome() + " Y/N" );
-                String answer = scanner.next();
-                if (answer.toLowerCase().equals("y") && puntoSelezionato != null){
-                    emissioneBiglietto(puntoSelezionato);
-                } else if (answer.toLowerCase().equals("y") && puntoSelezionato == null) {
-                    System.out.println("Punto non selezionato");
-                    continue;
-                } else {
-                    System.out.println("Biglietto Non Emesso - Stai per tornare indietro al menu utente");
-                    menuUtente();
+                try {
+                    System.out.println("Sei sicuro di voler acquistare il biglietto per 3 euro ? da : " + puntoSelezionato.getNome() + " Y/N");
+                    String answer = scanner.next();
+                    if (answer.toLowerCase().equals("y") ) {
+                        Biglietti biglietto = emissioneBiglietto(puntoSelezionato);
+                        infoLogger.info( " emesso" + biglietto );
+                        menuUtente();
+                    } else {
+                        System.out.println("Biglietto Non Emesso - Stai per tornare indietro al menu utente");
+                        menuUtente();
+                    }
+                } catch (Exception e){
+                    errorLogger.error(e.getMessage());
                 }
             }
             try {
@@ -116,20 +119,21 @@ public class Main {
                 errorLogger.error(e.getMessage());
             }
         } while (true);
-
     }
+
 
     public static void menuRivenditore(){
         System.out.println("menu rivenditore");
     }
 
     //metodo per l'emissione di un biglietto
-    public static void emissioneBiglietto(PuntiDiEmissione puntiDiEmissione){
+    public static Biglietti emissioneBiglietto(PuntiDiEmissione puntiDiEmissione){
         Biglietti biglietto = new Biglietti();
         biglietto.setValido(true);
         biglietto.setPuntiDiEmissione(puntiDiEmissione);
         biglietto.setDataEmissione(LocalDate.now());
         biglietto.setPrezzo(3);
+        return biglietto;
     }
 
     //metodo per vidimare il biglietto

@@ -71,3 +71,5 @@
 2024-01-31 05:27:54 ERROR main main_error - Abbonamento non emesso : Errore
 2024-02-01 02:04:36 ERROR main main_error - Abbonamento non emesso : Errore
 2024-02-01 02:26:32 ERROR main main_error - Abbonamento non emesso : Errore
+2024-02-01 03:31:06 ERROR main main_error - Cannot invoke "entities.PuntiDiEmissione.getNome()" because "puntoSelezionato" is null
+2024-02-01 03:32:02 ERROR main main_error - Cannot invoke "entities.PuntiDiEmissione.getNome()" because "puntoSelezionato" is null

@@ -8,9 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/main_info.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/main_info.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/PuntiDiEmissioneDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/PuntiDiEmissioneDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/DistributoriAutomatici.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/DistributoriAutomatici.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/PuntiDiEmissione.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/PuntiDiEmissione.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
